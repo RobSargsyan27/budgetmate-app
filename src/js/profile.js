@@ -17,8 +17,6 @@ async function getUserDetails(token) {
 }
 
 async function updateUserDetails(token, id, payload) {
-  Object.keys(payload).forEach(field => !payload[field] && delete payload[field]);
-
   const response = await fetch(`/api/v1/user/${id}`, {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
@@ -35,6 +33,43 @@ async function deleteUserDetails(id, token){
   });
 
   return response.json();
+}
+
+function getUpdateUserValidationSchema(){
+  return Joi.object({
+    firstname: Joi.string().min(2),
+    lastname: Joi.string().min(2),
+    country: Joi.string(),
+    address: Joi.string().min(2),
+    city: Joi.string(),
+    postalCode: Joi.string(),
+    avatarColor: Joi.string().regex(/^#?[0-9A-Fa-f]{6}$/)
+  });
+}
+
+function validateUserUpdateForm(payload) {
+  Object.keys(payload).forEach(field => !payload[field] && delete payload[field])
+
+  const { error } = getUpdateUserValidationSchema().validate(payload)
+
+  const modalBody = document.getElementById("errorModalBody")
+  modalBody.innerHTML = ""
+
+  if (error) {
+    error.details.forEach(detail => {
+      const field = detail.path[0]
+      const message = detail.message
+      const alertDiv = document.createElement("div")
+      alertDiv.classList.add("alert", "alert-danger", "mb-2")
+      alertDiv.textContent = `${field}: ${message}`
+      modalBody.appendChild(alertDiv)
+    });
+
+    $("#errorModal").modal("show")
+    return false
+  }
+
+  return true
 }
 
 function getFormFields() {
@@ -86,12 +121,15 @@ function setUpdateUserListener(token, user){
       postalCode: profilePostalCode.value,
       avatarColor: profileAvatarColor.value
     };
-    const result = await updateUserDetails(token, user.id, payload);
 
-    setFormDetails(result)
-    submitButton.blur();
+    if(validateUserUpdateForm(payload)){
+      const result = await updateUserDetails(token, user.id, payload);
 
-    document.getElementById('updateProfileForm').focus()
+      setFormDetails(result)
+      submitButton.blur();
+
+      document.getElementById('updateProfileForm').focus()
+    }
   });
 }
 
