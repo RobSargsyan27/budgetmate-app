@@ -1,0 +1,24 @@
+{
+  "plugins": [
+    "https://plugins.dprint.dev/g-plane/malva-v0.10.0.wasm",
+    "https://plugins.dprint.dev/g-plane/markup_fmt-v0.9.0.wasm"
+  ],
+  "includes": [
+    "/*/**/*.{css,html}"
+  ],
+  "excludes": [
+    "node_modules",
+    "dist"
+  ],
+  "indentWidth": 2,
+  "lineWidth": 80,
+  "useTabs": false,
+  "malva": {
+    "indentWidth": 2,
+    "printWidth": 80
+  },
+  "markup": {
+    "indentWidth": 2,
+    "printWidth": 80
+  }
+}

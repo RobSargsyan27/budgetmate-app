@@ -8,7 +8,8 @@
     "htmlhint": "1.2.0",
     "stylelint": "16.20.0",
     "stylelint-config-standard": "38.0.0",
-    "sass": "1.89.1"
+    "sass": "1.89.1",
+    "dprint": "0.50.0"
   },
   "dependencies": {
     "jquery": "3.6.0",
@@ -22,9 +23,7 @@
   "scripts": {
     "lint:js": "eslint src/**/*.js",
     "lint:js:fix": "eslint src/**/*.js --fix",
-    "lint:html": "htmlhint public/**/*.html",
-    "lint:css": "stylelint src/**/*.css",
-    "lint:css:fix": "stylelint src/**/*.css --fix",
+    "dprint:fix": "dprint fmt",
     "build:css": "sass src/scss:src/css"
   }
 }
