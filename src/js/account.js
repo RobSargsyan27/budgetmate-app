@@ -8,7 +8,7 @@ function addActionToActivityLog(accountId) {
 }
 
 async function getUserAccount(token, id) {
-  const response = await fetch(`/api/v1/account/${id}`, {
+  const response = await fetch(`/api/v2/account/${id}`, {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -19,7 +19,7 @@ async function getUserAccount(token, id) {
 function updateUserAccount(token, id, payload){
   const { name, currentBalance, type, avatarColor } = payload;
 
-  return fetch(`api/v1/account/${id}`, {
+  return fetch(`api/v2/account/${id}`, {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify({name, currentBalance, type, avatarColor})
@@ -27,7 +27,7 @@ function updateUserAccount(token, id, payload){
 }
 
 function deleteUserAccount(token, id) {
-  return fetch(`/api/v1/account/${id}`, {
+  return fetch(`/api/v2/account/${id}`, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });

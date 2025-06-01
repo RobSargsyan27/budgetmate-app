@@ -1,6 +1,6 @@
 async function getUserMonthlyExpensesLineChart(token, startDate, endDate){
     const response = await fetch(
-        `api/v1/analytics/overview-line/${startDate.toISOString()}/${endDate.toISOString()}/expense`,
+        `api/v2/analytics/overview-line/${startDate.toISOString()}/${endDate.toISOString()}/expense`,
         {
             method: 'GET',
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},

@@ -10,7 +10,7 @@ function addActionToActivityLog(){
 async function getRecordReportUrl(token){
   const payload = getRecordFilters();
 
-  const response = await fetch('api/v1/record/report', {
+  const response = await fetch('api/v2/record/report', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify(payload)
@@ -38,7 +38,7 @@ function getRecordFilters() {
 async function getUserRecordsCount(token) {
   const payload = getRecordFilters();
 
-  const response = await fetch('api/v1/record/count', {
+  const response = await fetch('api/v2/record/count', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify(payload)
@@ -50,7 +50,7 @@ async function getUserRecordsCount(token) {
 async function getUserRecords(token, limit, offset) {
   const payload = getRecordFilters();
 
-  const result = await fetch(`api/v1/record/${limit}/${offset}`, {
+  const result = await fetch(`api/v2/record/${limit}/${offset}`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify(payload)

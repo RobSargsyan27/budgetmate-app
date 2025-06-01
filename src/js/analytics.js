@@ -8,7 +8,7 @@ function addActionToActivityLog(){
 }
 
 async function getUserRecordsOverview(token, startDate, endDate) {
-  const response = await fetch(`/api/v1/analytics/overview/${startDate}/${endDate}`, {
+  const response = await fetch(`/api/v2/analytics/overview/${startDate}/${endDate}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });

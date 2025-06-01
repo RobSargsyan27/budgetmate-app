@@ -13,7 +13,7 @@ function setLoginFormListener(loginForm, message){
     const password = document.getElementById('inputPassword').value;
 
     try{
-      const response = await fetch('/api/v1/auth/login', {
+      const response = await fetch('/api/v2/auth/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ email, password })

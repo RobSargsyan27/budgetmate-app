@@ -8,7 +8,7 @@ function addActionToActivityLog(budgetId){
 }
 
 async function getRecordCategories(token) {
-  const response = await fetch('/api/v1/record/record-categories', {
+  const response = await fetch('/api/v2/record/record-categories', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -17,7 +17,7 @@ async function getRecordCategories(token) {
 }
 
 async function getUserBudget(token, id){
-  const response = await fetch(`/api/v1/budget/${id}`, {
+  const response = await fetch(`/api/v2/budget/${id}`, {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -28,7 +28,7 @@ async function getUserBudget(token, id){
 function updateUserBudget(token, id, payload){
   const { amount, name, recordCategories } = payload;
 
-  return fetch(`http://app.budgetmate.com/api/v1/budget/${id}`, {
+  return fetch(`/api/v2/budget/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
     body: JSON.stringify({ amount, name, recordCategories })
@@ -36,7 +36,7 @@ function updateUserBudget(token, id, payload){
 }
 
 function deleteUserBudget(token, id) {
-  return fetch(`/api/v1/budget/${id}`, {
+  return fetch(`/api/v2/budget/${id}`, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });

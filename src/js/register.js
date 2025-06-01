@@ -1,7 +1,7 @@
 async function registerUser (userForm) {
   const { firstname, lastname, email, password, receiveNewsLetters } = userForm;
 
-  return fetch('/api/v1/auth/register', {
+  return fetch('/api/v2/auth/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ firstname, lastname, email, password, receiveNewsLetters })

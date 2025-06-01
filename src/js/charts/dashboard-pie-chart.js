@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const expensesTopCategoriesPieChartContext = expensesTopCategoriesPieChart.getContext('2d')
     const token = localStorage.getItem('token')
 
-    const response = await fetch('api/v1/analytics/dashboard/categories-pie', {
+    const response = await fetch('api/v2/analytics/dashboard/categories-pie', {
         method: 'GET',
         headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     })

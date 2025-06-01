@@ -8,7 +8,7 @@ function addActionToActivityLog(){
 }
 
 async function getUserBudgetsReport(token) {
-  const response = await fetch('api/v1/budget/report', {
+  const response = await fetch('api/v2/budget/report', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -18,7 +18,7 @@ async function getUserBudgetsReport(token) {
 
 
 async function getUserBudgets(token){
-  const response = await fetch('api/v1/budget', {
+  const response = await fetch('api/v2/budget', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -27,7 +27,7 @@ async function getUserBudgets(token){
 }
 
 async function getUsersBudgetsCurrentBalance(token) {
-  const response = await fetch('api/v1/budget/current-balance', {
+  const response = await fetch('api/v2/budget/current-balance', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });

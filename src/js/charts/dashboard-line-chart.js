@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const monthlyExpensesLineChart = document.getElementById('monthlyExpensesLineChart').getContext('2d');
     const token = localStorage.getItem('token')
 
-    const response = await fetch('api/v1/analytics/dashboard/expenses-line-chart', {
+    const response = await fetch('api/v2/analytics/dashboard/expenses-line-chart', {
         method: 'GET',
         headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     })

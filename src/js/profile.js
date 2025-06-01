@@ -8,7 +8,7 @@ function addActionToActivityLog(){
 }
 
 async function getUserDetails(token) {
-  const response = await fetch('api/v1/user', {
+  const response = await fetch('api/v2/user', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -16,8 +16,8 @@ async function getUserDetails(token) {
   return await response.json();
 }
 
-async function updateUserDetails(token, id, payload) {
-  const response = await fetch(`/api/v1/user/${id}`, {
+async function updateUserDetails(token, payload) {
+  const response = await fetch(`/api/v2/user`, {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify(payload)
@@ -26,8 +26,8 @@ async function updateUserDetails(token, id, payload) {
   return response.json();
 }
 
-async function deleteUserDetails(id, token){
-  const response = await fetch(`/api/v1/user/${id}`, {
+async function deleteUserDetails(token){
+  const response = await fetch(`/api/v2/user`, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -106,7 +106,7 @@ function setFormDetails(payload) {
   profileAvatarColor.value = avatarColor || '#00008B';
 }
 
-function setUpdateUserListener(token, user){
+function setUpdateUserListener(token){
   document.getElementById('updateProfileForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     const submitButton = document.getElementById('submitButton');
@@ -123,7 +123,7 @@ function setUpdateUserListener(token, user){
     };
 
     if(validateUserUpdateForm(payload)){
-      const result = await updateUserDetails(token, user.id, payload);
+      const result = await updateUserDetails(token, payload);
 
       setFormDetails(result)
       submitButton.blur();
@@ -133,9 +133,9 @@ function setUpdateUserListener(token, user){
   });
 }
 
-function setDeleteUserListener(token, user){
+function setDeleteUserListener(token){
   document.getElementById('deleteAccountButton').addEventListener('click', async () => {
-    await deleteUserDetails(user.id, token);
+    await deleteUserDetails(token);
 
     localStorage.removeItem('token');
     window.location.href = '/login';
@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   const user = await getUserDetails(token);
 
   setFormDetails(user);
-  setUpdateUserListener(token, user);
-  setDeleteUserListener(token, user);
+  setUpdateUserListener(token);
+  setDeleteUserListener(token);
 
   addActionToActivityLog();
   setUserActivityLogDetails();

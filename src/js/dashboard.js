@@ -8,7 +8,7 @@ function addActionToActivityLog() {
 }
 
 function addUserRecord(token, type, payload){
-  return fetch(`api/v1/record/${type}`, {
+  return fetch(`api/v2/record/${type}`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify(payload)
@@ -16,37 +16,37 @@ function addUserRecord(token, type, payload){
 }
 
 function addUserBudget(token, payload){
-  const { userId, amount, name, budgetCategories } = payload;
+  const { amount, name, budgetCategories } = payload;
 
-  return fetch('api/v1/budget', {
+  return fetch('api/v2/budget', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
-    body: JSON.stringify({userId, amount, name, budgetCategories})
+    body: JSON.stringify({ amount, name, budgetCategories})
   });
 }
 
 function addUserNewAccount(token, payload){
-  const { userId, name, currency, currentBalance, type, avatarColor } = payload;
+  const { name, currency, currentBalance, type, avatarColor } = payload;
 
-  return fetch('api/v1/account', {
+  return fetch('api/v2/account', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
-    body: JSON.stringify({ userId, name, currency, currentBalance, type, avatarColor })
+    body: JSON.stringify({ name, currency, currentBalance, type, avatarColor })
   });
 }
 
 function addUserExistingAccount(token, payload){
-  const { userId, accountName, ownerUsername } = payload;
+  const { accountName, ownerUsername } = payload;
 
-  return fetch('api/v1/account/existing', {
+  return fetch('api/v2/account/existing', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
-    body: JSON.stringify({ userId, accountName, ownerUsername })
+    body: JSON.stringify({ accountName, ownerUsername })
   });
 }
 
 async function getUserDetails(token) {
-  const response = await fetch('/api/v1/user', {
+  const response = await fetch('/api/v2/user', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -55,7 +55,7 @@ async function getUserDetails(token) {
 }
 
 async function getUserDashboardAnalytics(token) {
-  const response = await fetch('api/v1/analytics/dashboard', {
+  const response = await fetch('api/v2/analytics/dashboard', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -64,7 +64,7 @@ async function getUserDashboardAnalytics(token) {
 }
 
 async function getUserRecordCategories(token) {
-  const response = await fetch('api/v1/record/record-categories', {
+  const response = await fetch('api/v2/record/record-categories', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -73,7 +73,7 @@ async function getUserRecordCategories(token) {
 }
 
 async function getUserAccounts(token) {
-  const response = await fetch('api/v1/account', {
+  const response = await fetch('api/v2/account', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -191,19 +191,19 @@ async function setDashboardUserAnalytics(token) {
     </div>`;
 }
 
-function submitRecord(token, userId) {
+function submitRecord(token) {
   document.getElementById('addRecordButton').addEventListener('click', async function () {
     const activeTab = document.querySelector('#recordTabs .nav-link.active').textContent;
 
     switch (activeTab) {
     case 'Expense':
-      await submitExpenseRecord(token, userId);
+      await submitExpenseRecord(token);
       break;
     case 'Income':
-      await submitIncomeRecord(token, userId);
+      await submitIncomeRecord(token);
       break;
     case 'Transfer':
-      await submitTransferRecord(token, userId);
+      await submitTransferRecord(token);
       break;
     }
 
@@ -213,7 +213,7 @@ function submitRecord(token, userId) {
   });
 }
 
-async function submitExpenseRecord(token, userId) {
+async function submitExpenseRecord(token) {
   const amountInput = document.getElementById('expenseAmount');
   const paymentTimeInput = document.getElementById('expensePaymentTime');
   const categoryDropdown = document.getElementById('expenseRecordCategoryDropdown');
@@ -226,7 +226,7 @@ async function submitExpenseRecord(token, userId) {
   const withdrawalAccountId = withdrawalAccountDropdown.value;
   const note = noteInput.value;
 
-  await addUserRecord(token, 'expense', {userId, amount, paymentTime, category, withdrawalAccountId, note});
+  await addUserRecord(token, 'expense', { amount, paymentTime, category, withdrawalAccountId, note});
 
   amountInput.value = '';
   paymentTimeInput.value = '';
@@ -235,7 +235,7 @@ async function submitExpenseRecord(token, userId) {
   noteInput.value = '';
 }
 
-async function submitIncomeRecord(token, userId) {
+async function submitIncomeRecord(token) {
   const amountInput = document.getElementById('incomeAmount');
   const paymentTimeInput = document.getElementById('incomePaymentTime');
   const categoryDropdown = document.getElementById('incomeRecordCategoryDropdown');
@@ -248,7 +248,7 @@ async function submitIncomeRecord(token, userId) {
   const receivingAccountId = receivingAccountDropdown.value;
   const note = noteInput.value;
 
-  await addUserRecord(token, 'income', {userId, amount, paymentTime, category, receivingAccountId, note});
+  await addUserRecord(token, 'income', {amount, paymentTime, category, receivingAccountId, note});
 
   amountInput.value = '';
   paymentTimeInput.value = '';
@@ -258,7 +258,7 @@ async function submitIncomeRecord(token, userId) {
 }
 
 
-async function submitTransferRecord(token, userId) {
+async function submitTransferRecord(token) {
   const amountInput = document.getElementById('transferAmount');
   const paymentTimeInput = document.getElementById('transferPaymentTime');
   const receivingAccountDropdown = document.getElementById('transferReceivingAccountDropdown');
@@ -271,7 +271,7 @@ async function submitTransferRecord(token, userId) {
   const withdrawalAccountId = withdrawalAccountDropdown.value;
   const note = noteInput.value;
 
-  await addUserRecord(token, 'transfer', {userId, amount, paymentTime, withdrawalAccountId, receivingAccountId, note});
+  await addUserRecord(token, 'transfer', {amount, paymentTime, withdrawalAccountId, receivingAccountId, note});
 
   amountInput.value = '';
   paymentTimeInput.value = '';
@@ -281,7 +281,7 @@ async function submitTransferRecord(token, userId) {
 }
 
 
-function submitBudget(token, userId) {
+function submitBudget(token) {
   document.getElementById('addBudgetButton').addEventListener('click', async function () {
     const nameInput = document.getElementById('budgetName');
     const amountInput = document.getElementById('budgetAmount');
@@ -293,7 +293,7 @@ function submitBudget(token, userId) {
       .from(document.querySelectorAll('#budgetRecordCategoriesDropdown .form-check-input:checked'))
       .map(input => input.value);
 
-    await addUserBudget(token, {userId, amount, name, budgetCategories});
+    await addUserBudget(token, { amount, name, budgetCategories});
 
     nameInput.value = '';
     amountInput.value = '';
@@ -302,13 +302,13 @@ function submitBudget(token, userId) {
   });
 }
 
-function submitAccount(token, userId) {
+function submitAccount(token) {
   document.getElementById('addAccountButton').addEventListener('click', async function () {
     const activeTab = document.querySelector('#accountTabs .nav-link.active').textContent;
 
     activeTab === 'New Account'
-      ? await submitNewAccount(token, userId)
-      : await submitExistingAccountRequest(token, userId);
+      ? await submitNewAccount(token)
+      : await submitExistingAccountRequest(token);
 
     await setDashboardUserAccounts(token);
     await setDashboardUserAnalytics(token);
@@ -316,7 +316,7 @@ function submitAccount(token, userId) {
   });
 }
 
-async function submitNewAccount(token, userId) {
+async function submitNewAccount(token) {
   const name = document.getElementById('accountName');
   const currency = document.getElementById('accountCurrency');
   const currentBalance = document.getElementById('accountCurrentBalance');
@@ -324,7 +324,6 @@ async function submitNewAccount(token, userId) {
   const avatarColor = document.getElementById('accountAvatarColor');
 
   const payload= {
-    userId,
     name: name.value,
     currency: currency.value,
     currentBalance: currentBalance.value,
@@ -340,11 +339,11 @@ async function submitNewAccount(token, userId) {
   avatarColor.value = '#000053';
 }
 
-async function submitExistingAccountRequest(token, userId) {
+async function submitExistingAccountRequest(token) {
   const accountName = document.getElementById('existingAccountName');
   const ownerUsername = document.getElementById('existingAccountOwnerUsername');
 
-  const payload = {userId, accountName: accountName.value, ownerUsername: ownerUsername.value};
+  const payload = {accountName: accountName.value, ownerUsername: ownerUsername.value};
   await addUserExistingAccount(token, payload);
 
   accountName.value = '';
@@ -353,16 +352,15 @@ async function submitExistingAccountRequest(token, userId) {
 
 document.addEventListener('DOMContentLoaded', async function () {
   const token = localStorage.getItem('token');
-  const user = await getUserDetails(token);
 
   await setDashboardUserAccounts(token);
   await setRecordCategories(token);
   await setUserAccounts(token);
   await setDashboardUserAnalytics(token);
 
-  submitRecord(token, user.id);
-  submitBudget(token, user.id);
-  submitAccount(token, user.id);
+  submitRecord(token);
+  submitBudget(token);
+  submitAccount(token);
 
   addActionToActivityLog();
   setUserActivityLogDetails();

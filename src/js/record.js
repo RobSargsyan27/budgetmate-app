@@ -8,7 +8,7 @@ function addActionToActivityLog(recordId){
 }
 
 async function getRecordCategories(token) {
-  const response = await fetch('/api/v1/record/record-categories', {
+  const response = await fetch('/api/v2/record/record-categories', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -17,7 +17,7 @@ async function getRecordCategories(token) {
 }
 
 async function getUserRecord(token, id) {
-  const response = await fetch(`/api/v1/record/${id}`, {
+  const response = await fetch(`/api/v2/record/${id}`, {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -26,7 +26,7 @@ async function getUserRecord(token, id) {
 }
 
 async function getUserAccount(token, id) {
-  const response = await fetch(`/api/v1/account/${id}`, {
+  const response = await fetch(`/api/v2/account/${id}`, {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -35,7 +35,7 @@ async function getUserAccount(token, id) {
 }
 
 function updateUserRecord(token, id, payload){
-  return fetch(`api/v1/record/${id}`, {
+  return fetch(`api/v2/record/${id}`, {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify(payload)
@@ -43,7 +43,7 @@ function updateUserRecord(token, id, payload){
 }
 
 function deleterUserRecord(token, id) {
-  return fetch(`/api/v1/record/${id}`, {
+  return fetch(`/api/v2/record/${id}`, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });

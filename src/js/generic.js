@@ -28,7 +28,7 @@ function setUserLogOutListener() {
 
 async function validateToken(token) {
   try {
-    const response = await fetch('/api/v1/auth/validate-token', {
+    const response = await fetch('/api/v2/auth/validate-token', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({token})
@@ -49,7 +49,7 @@ async function validateToken(token) {
 }
 
 async function getUserDetails(token) {
-  const response = await fetch('/api/v1/user', {
+  const response = await fetch('/api/v2/user', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
@@ -58,7 +58,7 @@ async function getUserDetails(token) {
 }
 
 async function getUserNotifications(token){
-  const response = await fetch('/api/v1/user/notifications', {
+  const response = await fetch('/api/v2/user/notifications', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
   });
@@ -70,7 +70,7 @@ async function getUserNotifications(token){
 function submitNotificationAnswer(token, id, type){
   const isApproved = type === 'approved';
 
-  return fetch(`http://app.budgetmate.com/api/v1/account/${id}/${isApproved}`, {
+  return fetch(`/api/v2/account/${id}/${isApproved}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
