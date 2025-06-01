@@ -1,0 +1,8 @@
+#contact-bg {
+    background-image: url('../img/contact-page/animation1.png');
+}
+
+#inputMessage {
+    height: 200px;
+    resize: none;
+}

@@ -1,0 +1,13 @@
+$img-path: '../img/register-login-page/';
+
+#register-bg {
+    background-image: url('#{$img-path}animation1.png');
+}
+
+#login-bg {
+    background-image: url('#{$img-path}animation2.png');
+}
+
+#message, #emailNotification {
+    display: none;
+}

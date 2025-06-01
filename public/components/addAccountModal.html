@@ -1,0 +1,91 @@
+<div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="addAccountModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title dashboard.action.addAccount" id="addAccountModalMessage">Add Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="accountTabs">
+          <li class="nav-item">
+            <a class="nav-link active dashboard.addAccountModal.newAccount" id="newAccountTab" data-toggle="tab" href="#newAccount">New Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link dashboard.addAccountModal.existingAccount" id="existingAccountTab" data-toggle="tab" href="#existingAccount">Existing Account</a>
+          </li>
+        </ul>
+        <div class="tab-content mt-2" id="accountForms">
+          <div class="tab-pane fade show active" id="newAccount">
+            <form id="newAccountForm" class="gd-1">
+              <div class="form-group">
+                <label for="accountName" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="name">Name</span>
+                </label>
+                <input type="text" class="form-control" id="accountName" required>
+              </div>
+              <div class="form-group">
+                <label for="accountCurrentBalance" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="account.currentBalance">Current Balance</span>
+                </label>
+                <input type="number" class="form-control" id="accountCurrentBalance" required>
+              </div>
+              <div class="form-group">
+                <label for="accountCurrency" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="currency">Currency</span>
+                </label>
+                <select name="accountCurrency" id="accountCurrency" class="form-control">
+                  <option name="USD" value="USD" id="currency-USD">USD</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="accountType" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="account.accountType">Account Type</span>
+                </label>
+                <select name="accountCurrency" id="accountType" class="form-control">
+                  <option name="GENERAL" value="GENERAL" id="accountType-GENERAL">General</option>
+                  <option name="CASH" value="CASH" id="accountType-CASH">Cash</option>
+                  <option name="CREDIT_CARD" value="CREDIT_CARD" id="accountType-CREDIT_CARD">Credit Card</option>
+                  <option name="SAVINGS_ACCOUNT" value="SAVINGS_ACCOUNT" id="accountType-SAVINGS_ACCOUNT">Savings Account</option>
+                  <option name="BONUS" value="BONUS" id="accountType-BONUS">Bonus</option>
+                </select>
+              </div>
+              <div class="form-group d-flex justify-content-center align-items-center">
+                <label for="accountAvatarColor" class="form-label">Account Color</label>
+                <input class="form-control form-control-lg wd-1 ml-5" id="accountAvatarColor"
+                       type="color" value="#ff5733">
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="existingAccount">
+            <form id="existingAccountForm" class="gd-1">
+              <div class="form-group">
+                <label for="existingAccountName" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="name">Name</span>
+                </label>
+                <input type="text" class="form-control" id="existingAccountName" required>
+              </div>
+              <div class="form-group">
+                <label for="existingAccountOwnerUsername" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="account.ownerUsername">Owner's Username</span>
+                </label>
+                <input type="text" class="form-control" id="existingAccountOwnerUsername" required>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal.close" data-dismiss="modal" id="closeAccountModalButton">Close</button>
+        <button type="button" class="btn btn-primary dashboard.addAccountModal.addAccount" id="addAccountButton">Add Account</button>
+      </div>
+    </div>
+  </div>
+</div>

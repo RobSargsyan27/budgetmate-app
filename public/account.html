@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A web-application to help you manage your finance.">
+    <meta name="author" content="Robert Sargsyan">
+
+    <title>Account</title>
+
+    <script src="/vendor/jquery/jquery.min.js" defer></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js" defer></script>
+    <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+
+    <script src="/js/account.js" defer></script>
+    <script src="/js/generic.js" defer></script>
+    <script src="/js/generic-animation.js" defer></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="/vendor/fortawesome-fontawesome/css/all.min.css">
+    <link rel="icon" type="image/png" href="/img/logo/logo.png">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/theme-2.css">
+</head>
+
+<body id="page-top" style="display: none">
+<div id="wrapper">
+    <!--#include virtual="/components/nav-sidebar.html" -->
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <!--#include virtual="/components/nav-topbar.html" -->
+
+            <div class="container-fluid">
+                <h1 class="h3 mb-4 text-gray-800" id="accountName"></h1>
+                <div class="col-lg-12 d-flex flex-column ">
+                    <div class="card mb-4 p-4" id="accountCard">
+                        <div class="d-flex flex-column">
+                            <form id="updateAccountForm" class="gd-1">
+                                <div class="form-group">
+                                    <label for="updateAccountName" class="d-flex flex-row align-items-start">
+                                        <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                                        <span class="name">Name</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="updateAccountName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="updateAccountCurrentBalance" class="d-flex flex-row align-items-start">
+                                        <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                                        Current Balance
+                                        <span class="account.currentBalance">Current Balance</span>
+                                    </label>
+                                    <input type="number" class="form-control" id="updateAccountCurrentBalance" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="updateAccountCurrency" class="d-flex flex-row align-items-start">
+                                        <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                                        <span class="currency">Currency</span>
+                                    </label>
+                                    <div id="updateAccountCurrency" class="form-control">Update Currency</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="updateAccountType" class="d-flex flex-row align-items-start">
+                                        <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                                        <span class="account.accountType">Account Type</span>
+                                    </label>
+                                    <select name="updateAccountType" id="updateAccountType" class="form-control">
+                                        <option name="GENERAL" value="GENERAL" id="accountType-GENERAL">General</option>
+                                        <option name="CASH" value="CASH" id="accountType-CASH">Cash</option>
+                                        <option name="CREDIT_CARD" value="CREDIT_CARD" id="accountType-CREDIT_CARD">Credit Card</option>
+                                        <option name="SAVINGS_ACCOUNT" value="SAVINGS_ACCOUNT" id="accountType-SAVINGS_ACCOUNT">Savings Account</option>
+                                        <option name="BONUS" value="BONUS" id="accountType-BONUS">Bonus</option>
+                                    </select>
+                                </div>
+                                <div class="form-group d-flex align-items-center">
+                                    <label for="updateAccountAvatarColor" class="form-label account.accountColor">Avatar Color</label>
+                                    <input class="form-control form-control-lg wd-1 ml-5" id="updateAccountAvatarColor"
+                                           type="color" value="#ff5733">
+                                </div>
+                            </form>
+                            <div class="gd-r1 d-flex flex-row justify-content-between">
+                                <button id="submitAccountButton" class="btn btn-primary btn-xl form-btn mb-3 mt-4"
+                                        type="submit" form="updateAccountForm">
+                                    <span class="account.save">Save</span>
+                                </button>
+                                <button id="deleteAccountButton" class="btn btn-danger btn-xl form-btn mb-3 mt-4">
+                                    <span class="deleteAccount">Delete Account</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--#include virtual="/components/footer.html" -->
+    </div>
+</div>
+<!--#include virtual="/components/scrollToTop.html" -->
+
+<!--#include virtual="/components/logoutModal.html" -->
+</body>
+
+</html>

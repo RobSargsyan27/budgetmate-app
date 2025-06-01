@@ -1,0 +1,31 @@
+$font-family: 'Inter';
+$font-path: '../fonts/';
+
+@mixin inter-font($weight, $file-name) {
+    @font-face {
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: $weight;
+        font-display: swap;
+        src: local(''),
+        url('#{$font-path}#{$file-name}.woff2') format('woff2');
+    }
+}
+
+@include inter-font(300, 'inter-v12-latin-300');
+@include inter-font(500, 'inter-v12-latin-500');
+
+@font-face {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local(''),
+    url('#{$font-path}inter-v12-latin-700.woff2') format('woff2'),
+    url('#{$font-path}inter-v12-latin-700.woff') format('woff');
+}
+
+#error-picture {
+    display: block;
+    margin: auto;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Records History</title>
+
+    <script src="/vendor/jquery/jquery.min.js" defer></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js" defer></script>
+    <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="/js/records_history.js" defer></script>
+    <script src="/js/generic.js" defer></script>
+    <script src="/js/generic-animation.js" defer></script>
+
+    <link rel="stylesheet" href="/vendor/fortawesome-fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="icon" type="image/png" href="/img/logo/logo.png">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/theme-2.css">
+</head>
+
+<body id="page-top" style="display: none">
+<div id="wrapper">
+    <!--#include virtual="/components/nav-sidebar.html" -->
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+            <!--#include virtual="/components/nav-topbar.html" -->
+
+            <div class="container-fluid" id="recordsHistoryContainer">
+                <h1 class="h3 mb-4 text-gray-800 recordsHistory">Records History</h1>
+
+                <div class="card mb-4" id="recordsHistoryTableCard">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-between mb-4 ml-1 mr-1">
+                            <button class="btn btn-primary generateReport" id="recordReportButton">Generate Report</button>
+                            <button class="btn btn-primary recordHistory.applyFilters" id="recordsApplyFilters">Apply Filters</button>
+                        </div>
+                        <hr>
+                        <div class="table-responsive">
+                            <div class="gd-1 mb-2">
+                                <div class="d-flex align-items-center mb-3">
+                                    <label for="recordsPerPageSelect" class="form-label mr-3 recordsPerPage">Records Per Page</label>
+                                    <select id="recordsPerPageSelect" class="form-control form-select-sm" style="width: auto;">
+                                        <option value="5">5</option>
+                                        <option value="10" selected>10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-flex align-items-center mb-3">
+                                    <label for="recordTypeSelect" class="form-label mr-3 record.category">Category</label>
+                                    <select id="recordTypeSelect" class="form-control form-select-sm" style="width: auto;">
+                                        <option class="recordHistory.all" value="all">All</option>
+                                        <option class="recordHistory.income" value="income">Income</option>
+                                        <option class="recordHistory.expense" value="expense">Expense</option>
+                                        <option class="recordHistory.transfer" value="transfer">Transfer</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-flex align-items-center mb-3">
+                                    <label for="timestampStartFilter" class="form-label mr-3 timestamp">Date</label>
+                                    <input type="date" id="timestampStartFilter" class="form-control form-select-sm" style="width: auto;">
+                                    <span class="ml-1 mr-1">-</span>
+                                    <input type="date" id="timestampEndFilter" class="form-control form-select-sm" style="width: auto;">
+                                </div>
+
+                                <div class="d-flex align-items-center mb-3">
+                                    <label for="amountStartFilter" class="form-label mr-3 amount">Amount</label>
+                                    <input type="number" id="amountStartFilter" class="form-control form-select-sm" style="width: auto;">
+                                    <span class="ml-1 mr-1">-</span>
+                                    <input type="number" id="amountEndFilter" class="form-control form-select-sm" style="width: auto;">
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered" id="recordsHistoryTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th class="amount">Amount</th>
+                                    <th class="record.type">Record Type</th>
+                                    <th class="record.category">Category</th>
+                                    <th class="currency">Currency</th>
+                                    <th class="record.paymentTime">Payment Time</th>
+                                    <th class="receivingAccount">Receiving Account</th>
+                                    <th class="withdrawalAccount">Withdrawal Account</th>
+                                </tr>
+                                </thead>
+                                <tbody id="recordsHistoryTableBody"></tbody>
+                            </table>
+                            <div class="d-flex justify-content-center">
+                                <nav>
+                                    <ul class="pagination pagination-sm" id="paginationControls"></ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--#include virtual="/components/footer.html" -->
+    </div>
+</div>
+
+<!--#include virtual="/components/scrollToTop.html" -->
+
+<!--#include virtual="/components/logoutModal.html" -->
+</body>
+
+</html>

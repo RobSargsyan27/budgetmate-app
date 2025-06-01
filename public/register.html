@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="h-100" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A web-application to help you manage your finance.">
+    <meta name="author" content="Robert Sargsyan">
+    <title>Register</title>
+    <link rel="icon" type="image/png" href="/img/logo/logo.png">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/register-login.css">
+
+    <script src="/vendor/jquery/jquery.min.js" defer></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js" defer></script>
+    <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script type="module" src="/js/register.js" defer></script>
+</head>
+
+<body class="d-flex flex-column h-100 w-100" data-bs-spy="scroll" data-bs-target="#navScroll">
+<div class="h-100 container-fluid">
+    <div class="h-100 row d-flex align-items-stretch">
+        <div class="col-12 col-lg-6 d-flex align-items-start flex-column px-vw-5">
+
+            <header class="mb-auto py-vh-2 col-12">
+                <a class="navbar-brand pe-4 fs-4" href="/public">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                         viewbox="0 0 48 48">
+                        <image height="48" width="48" href="/img/logo/blue-back-logo.svg"></image>
+                    </svg>
+                    <span class="ms-1 fw-bolder">BudgetMate</span>
+                </a>
+            </header>
+
+            <main class="mb-auto col-12">
+                <h1 class="fs-4">Create an account</h1>
+                <p class="fs-7 pt-3 pb-4">Already have an account? <a href="/login">Log in</a></p>
+
+                <form class="row fs-7" id="registerForm">
+                    <div class="gd-1">
+                        <div class="mb-3 gd-r1">
+                            <label for="inputEmail" class="form-label">Email address</label>
+                            <input type="email" name="email" class="form-control form-control-lg" id="inputEmail"
+                                   aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputFirstName" class="form-label">First Name</label>
+                            <input type="text" name="firstname" class="form-control form-control-lg" id="inputFirstName"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputLastName" class="form-label">Last Name</label>
+                            <input type="text" name="lastname" class="form-control form-control-lg" id="inputLastName"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control form-control-lg" id="inputPassword"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputRepeatPassword" class="form-label">Repeat Password</label>
+                            <input type="password" name="repeatPassword" class="form-control form-control-lg" id="inputRepeatPassword"
+                                   required>
+                        </div>
+                        <div class="form-check py-1 gd-r1">
+                            <input type="checkbox" name="receiveNewsLetters" class="form-check-input" id="inputNewsLetter">
+                            <label class="form-check-label" for="inputNewsLetter">
+                                Receive newsletters and updates from BudgetMate to email.
+                            </label>
+                        </div>
+                        <div class="mb-4 form-check py-1 gd-r1">
+                            <input type="checkbox" class="form-check-input" id="inputTermsConditions">
+                            <label class="form-check-label" for="inputTermsConditions">
+                                I agree to our <a href="/terms">Terms and Conditions</a>.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-xl mb-3">Submit</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+
+        <div id="register-bg" class="col-12 col-md-5 col-lg-6 bg-cover side-background"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Please check your mailbox!</h5>
+            </div>
+            <div class="modal-body">
+                We send a verification email to your mailbox. Please verify your email by following instructions we sent.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="errorModal-body">
+                We send a verification email to your mailbox. Please verify your email by following instructions we sent.
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

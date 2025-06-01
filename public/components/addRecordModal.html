@@ -1,0 +1,130 @@
+<div class="modal fade" id="addRecordModal" tabindex="-1" role="dialog" aria-labelledby="addRecordModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title dashboard.addRecordModal.addRecord" id="exampleModalLabel">Add Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="recordTabs">
+          <li class="nav-item">
+            <a class="nav-link active dashboard.addRecordModal.expense" id="expenseTab" data-toggle="tab" href="#expense">Expense</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link dashboard.addRecordModal.income" id="incomeTab" data-toggle="tab" href="#income">Income</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link dashboard.addRecordModal.transfer" id="transferTab" data-toggle="tab" href="#transfer">Transfer</a>
+          </li>
+        </ul>
+        <div class="tab-content mt-2" id="recordForms">
+          <div class="tab-pane fade show active" id="expense">
+            <form id="expenseForm" class="gd-1" method="POST">
+              <div class="form-group">
+                <label for="expenseAmount" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="amount">Amount</span>
+                </label>
+                <input type="number" class="form-control" id="expenseAmount" required>
+              </div>
+              <div class="form-group">
+                <label for="expensePaymentTime">Date & Time</label>
+                <input type="datetime-local" class="form-control" id="expensePaymentTime">
+              </div>
+              <div class="form-group">
+                <label for="expenseRecordCategoryDropdown" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="record.category">Record Category</span>
+                </label>
+                <select name="expenseRecordCategoryDropdown" id="expenseRecordCategoryDropdown" class="form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="expenseWithdrawalAccountDropdown" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="withdrawalAccount">Withdrawal Account</span>
+                </label>
+                <select name="expenseWithdrawalAccountDropdown" id="expenseWithdrawalAccountDropdown" class="form-control"></select>
+              </div>
+              <div class="form-group gd-r1">
+                <label for="expenseNote">Note (max. 255 characters)</label>
+                <textarea maxlength="255" class="form-control" id="expenseNote"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="income">
+            <form id="incomeForm" class="gd-1">
+              <div class="form-group">
+                <label for="incomeAmount" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="amount">Amount</span>
+                </label>
+                <input type="number" class="form-control" id="incomeAmount" required>
+              </div>
+              <div class="form-group">
+                <label for="incomePaymentTime">Date & Time</label>
+                <input type="datetime-local" class="form-control" id="incomePaymentTime">
+              </div>
+              <div class="form-group">
+                <label for="incomeRecordCategoryDropdown" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="record.category">Record Category</span>
+                </label>
+                <select name="incomeRecordCategoryDropdown" id="incomeRecordCategoryDropdown" class="form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="incomeReceivingAccountDropdown" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="receivingAccount">Receiving Account</span>
+                </label>
+                <select name="incomeReceivingAccountDropdown" id="incomeReceivingAccountDropdown" class="form-control"></select>
+              </div>
+              <div class="form-group gd-r1">
+                <label for="incomeNote">Note (max. 255 characters)</label>
+                <textarea class="form-control" id="incomeNote"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="transfer">
+            <form id="transferForm" class="gd-1">
+              <div class="form-group">
+                <label for="transferAmount" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="amount">Amount</span>
+                </label>
+                <input type="number" class="form-control" id="transferAmount" required>
+              </div>
+              <div class="form-group">
+                <label for="transferPaymentTime">Date & Time</label>
+                <input type="datetime-local" class="form-control" id="transferPaymentTime">
+              </div>
+              <div class="form-group">
+                <label for="transferReceivingAccountDropdown" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="receivingAccount">Receiving Account</span>
+                </label>
+                <select name="transferReceivingAccountDropdown" id="transferReceivingAccountDropdown" class="form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="transferWithdrawalAccountDropdown" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="withdrawalAccount">Withdrawal Account</span>
+                </label>
+                <select name="transferWithdrawalAccountDropdown" id="transferWithdrawalAccountDropdown" class="form-control"></select>
+              </div>
+              <div class="form-group gd-r1">
+                <label for="transferNote">Note (max. 255 characters)</label>
+                <textarea class="form-control" id="transferNote"></textarea>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal.close" data-dismiss="modal" id="closeRecordModalButton">Close</button>
+        <button type="button" class="btn btn-primary dashboard.addRecordModal.addRecord" id="addRecordButton">Add Record</button>
+      </div>
+    </div>
+  </div>
+</div>

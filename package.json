@@ -1,0 +1,29 @@
+{
+  "name": "BudgetMate",
+  "version": "2.0.0",
+  "description": "BudgetMate is a application which helps you manage you finances.",
+  "author": "Robert Sargsyan <robert.sargsyan@student.kdg.be>",
+  "devDependencies": {
+    "eslint": "8.0.0",
+    "htmlhint": "1.2.0",
+    "stylelint": "16.20.0",
+    "stylelint-config-standard": "38.0.0",
+    "sass": "1.89.1"
+  },
+  "dependencies": {
+    "jquery": "3.6.0",
+    "jquery.easing": "1.4.1",
+    "bootstrap": "4.6.0",
+    "vite": "6.3.5",
+    "@fortawesome/fontawesome-free": "5.15.3",
+    "chart.js": "4.4.9"
+  },
+  "scripts": {
+    "lint:js": "eslint src/**/*.js",
+    "lint:js:fix": "eslint src/**/*.js --fix",
+    "lint:html": "htmlhint public/**/*.html",
+    "lint:css": "stylelint src/**/*.css",
+    "lint:css:fix": "stylelint src/**/*.css --fix",
+    "build:css": "sass src/scss:src/css"
+  }
+}

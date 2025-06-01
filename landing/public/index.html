@@ -1,0 +1,596 @@
+<!doctype html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A web-application to help you manage your finance.">
+    <meta name="author" content="Robert Sargsyan">
+    <title>BudgetMate</title>
+
+    <link rel="icon" type="image/png" href="/img/logo/logo.png">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/generic.css">
+    <link rel="stylesheet" href="/css/index.css">
+
+    <script src="/js/components/bootstrap.bundle.min.js" defer></script>
+    <script src="/js/components/aos.js" defer></script>
+    <script src="/js/animation.js" defer></script>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navScroll">
+<nav id="navScroll" class="navbar navbar-expand-lg navbar-light fixed-top" tabindex="0">
+    <div class="container">
+        <a class="navbar-brand pe-4 fs-4" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48">
+                <image href="/img/logo/blue-back-logo.svg" width="48" height="48"/>
+            </svg>
+            <span class="ms-1 fw-bolder dark-blue">BudgetMate</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/#aboutus">
+                        About us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">
+                        Contact Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pricing">
+                        Pricing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/faqs">
+                        FAQs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/terms">
+                        Terms
+                    </a>
+                </li>
+            </ul>
+            <a href="http://app.budgetmate.com/login" aria-label="Login" class="link-dark pb-1 link-fancy me-4">
+                Log in
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                    <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+            <a target="_blank" href="http://app.budgetmate.com/register" aria-label="Get started" class="link-dark pb-1 link-fancy me-2">
+                Get Started
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                    <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="w-100 overflow-hidden bg-gray-100 liner-gradient" id="top">
+        <div class="container position-relative">
+            <div id="index-page-intro-animation"
+                 class="col-12 col-lg-8 mt-0 h-100 position-absolute top-0 end-0 bg-cover"
+                 data-aos="fade-left">
+            </div>
+            <div class="row">
+                <div class="col-lg-7 py-vh-6 position-relative" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold mt-5 dark-gray">Take Control,<br> Transform Your Finances!</h1>
+                    <p class="col-lg-9 lead">At BudgetMate, we believe managing your money should be simple and
+                        stress-free.
+                        Our platform equips you with the tools to budget smarter, track your spending,
+                        and achieve your financial goals with confidence.</p>
+                    <a href="/html/register" class="btn btn-dark btn-xl shadow me-3 rounded-0 my-5">Get Started</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="py-vh-5 w-100 overflow-hidden" id="services">
+        <div class="container">
+            <div class="row d-flex justify-content-end">
+                <div class="col-lg-8" data-aos="fade-down"><h2 class="display-6 dark-gray">Why Choose BudgetMate?
+                    Three Powerful Reasons to Simplify, Save, and Succeed in Your Financial Journey</h2></div>
+            </div>
+            <div class="row d-flex align-items-center">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <span class="h5 fw-lighter">01.</span>
+                    <h3 class="py-5 border-top border-dark dark-blue">Simplified Budgeting</h3>
+                    <p>BudgetMate takes the hassle out of managing your finances by providing intuitive tools that
+                        make budgeting straightforward and accessible for everyone. With customizable features,
+                        you can easily allocate your income to different categories, track your expenses in real time,
+                        and adjust as your financial situation evolves. It’s budgeting made simple, so you can focus
+                        on what matters most.
+                    </p>
+                </div>
+
+                <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
+                    <span class="h5 fw-lighter">02.</span>
+                    <h3 class="py-5 border-top border-dark dark-blue">Smart Spending Insights</h3>
+                    <p>Understanding where your money goes is the first step to financial freedom. BudgetMate provides
+                        detailed breakdowns and visual insights into your spending habits, helping you identify patterns
+                        and areas where you can cut back. With these actionable insights, you can make smarter financial
+                        decisions and take control of your spending with confidence.
+                    </p>
+                </div>
+
+                <div class="col-md-6 col-lg-4 py-vh-6 pb-0" data-aos="fade-up" data-aos-delay="600">
+                    <span class="h5 fw-lighter">03.</span>
+                    <h3 class="py-5 border-top border-dark dark-blue">Goal-Oriented Planning</h3>
+                    <p>Achieving your financial dreams starts with a clear plan. Whether you’re saving for a vacation,
+                        a new car, or an emergency fund, BudgetMate empowers you to set specific goals and track your
+                        progress. With helpful reminders and milestones, BudgetMate keeps you motivated and on track to
+                        reach your targets faster than ever .
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="py-vh-4 bg-gray-100 w-100 overflow-hidden" id="aboutus">
+        <div class="container">
+            <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-lg-6">
+                    <div class="row gx-5 d-flex">
+                        <div class="col-md-11" id="animation2">
+                            <div class="ratio ratio-16x9 rounded bg-cover bp-center align-self-end"
+                                 data-aos="fade-right" style="--bs-aspect-ratio: 75%;">
+                                <img src="/img/index-page/animation2.png" alt="Animated Picture">
+                            </div>
+                        </div>
+                        <div class="col-md-5 offset-md-1" id="blue-back-logo">
+                            <div class="ratio ratio-1x1 rounded bg-cover mt-5 bp-center float-end"
+                                 data-aos="fade-up">
+                                <img src="/img/logo/blue-back-logo.png" alt="Animated Picture">
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="animation3">
+                            <div class="col-12 ratio rounded bg-cover mt-5 bp-center"
+                                 data-aos="fade-left" style="--bs-aspect-ratio: 190%;">
+                                <img src="/img/index-page/animation3.png" alt="Animated Picture">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="py-5 border-top border-dark dark-blue" data-aos="fade-left">Simplify, Save, Succeed!</h3>
+                    <p data-aos="fade-left" data-aos-delay="200">Our mission is to simplify personal
+                        finance, helping you easily track, manage, and achieve your financial goals with confidence.
+                        We aim to make budgeting accessible and stress-free for everyone, from first-time users to
+                        seasoned planners.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="py-vh-5 w-100 overflow-hidden" id="numbers">
+        <div class="container">
+            <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-lg-5">
+                    <h3 class="py-5 border-top border-dark dark-blue" data-aos="fade-right">By the Numbers: The Impact
+                        of BudgetMate</h3>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="display-6 mb-5" data-aos="fade-down">There are some important numbers for
+                                us.</h2>
+                        </div>
+                        <div class="col-lg-6" data-aos="fade-up">
+                            <div class="display-1 fw-bold py-4 dark-blue">70%</div>
+                            <p class="text-black-50 dark-gray">of users reduce unnecessary spending with smart tracking
+                                tools,
+                                identifying and cutting out non-essential expenses like impulse purchases, subscription
+                                services, and overlooked fees, leading to an average savings of 15-20% in monthly
+                                spending.</p>
+                        </div>
+                        <div class="col-lg-6" data-aos="fade-up">
+                            <div class="display-1 fw-bold py-4 dark-blue">+5000</div>
+                            <p class="text-black-50 dark-gray">successful budgeting plans created, with users
+                                consistently hitting
+                                their savings targets and staying within their monthly budgets. Our platform helps users
+                                build tailored plans that adapt to their unique financial goals, empowering them to
+                                track
+                                progress, adjust priorities, and stay on track to achieve long-term financial stability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-light w-100 overflow-hidden" id="testimonials">
+        <div class="container py-vh-6">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-lg-10 col-xl-8 text-center">
+                    <h2 class="display-6 dark-blue">See What Our Users Are Saying - Real Stories of Financial
+                        Transformation</h2>
+                    <p class="lead">Our users’ success stories speak for themselves. From achieving savings goals to
+                        gaining better control over daily expenses, BudgetMate has helped thousands transform their
+                        financial habits. Read how people just like you are reaching their financial milestones with
+                        ease and confidence.
+                    </p>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="row row-cols-1 row-cols-md-2 g-5 d-flex align-items-center">
+
+                        <div class="col-12 col-lg-6 col-xl-4" data-aos="fade-right">
+                            <div class="card p-4 mt-3 border-0">
+                                <div class="card-body">
+                                    <div class="text-dark py-2 fs-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-half" viewBox="0 0 16 16">
+                                            <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"/>
+                                        </svg>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>"BudgetMate has completely transformed the way I manage my finances. The
+                                            budgeting tools are simple to use and have helped me track my spending more
+                                            effectively. I’ve been able to save more and feel in control of my financial
+                                            goals. Highly recommend it for anyone looking to improve their financial
+                                            habits!"
+                                        </p>
+                                    </blockquote>
+                                    <div class="d-flex justify-content-between border-top pt-3">
+                                        <div>
+                                            <span class="h6 fw-5">Sarah J.</span><br>
+                                        </div>
+                                        <img src="/img/index-page/person9.webp" width="48" height="48"
+                                             class="rounded-circle" alt="" data-aos="fade">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="card p-4 shadow mt-3 border-0" data-aos="fade-down">
+                                <div class="card-body">
+                                    <div class="text-dark py-2 fs-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star" viewBox="0 0 16 16">
+                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                        </svg>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>"BudgetMate has been a game-changer for my monthly budgeting. The app is
+                                            easy to navigate, and I love the personalized savings goals feature. While
+                                            there’s a small learning curve, it’s definitely helped me stick to my budget
+                                            and save more each month. I’m excited to see where my finances go next!"
+                                        </p>
+                                    </blockquote>
+                                    <div class="d-flex justify-content-between border-top pt-3">
+                                        <p class="card-text">
+                                            <span class="h6 fw-5">Jenny M.</span><br>
+                                        </p>
+                                        <img src="/img/index-page/person3.webp" width="48" height="48"
+                                             class="rounded-circle"
+                                             alt="" data-aos="fade">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="card p-4 mt-3 border-0" data-aos="fade-left">
+                                <div class="card-body">
+                                    <div class="text-dark py-2 fs-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star" viewBox="0 0 16 16">
+                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star" viewBox="0 0 16 16">
+                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star" viewBox="0 0 16 16">
+                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                        </svg>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>"While BudgetMate has some useful features, I found it a bit complicated to
+                                            use at first. The interface could be more intuitive, and some features feel
+                                            unnecessary for my needs. It's helpful, but I expected more straightforward
+                                            functionality for the price."
+                                        </p>
+                                    </blockquote>
+                                    <div class="d-flex justify-content-between border-top pt-3">
+                                        <p class="card-text">
+                                            <span class="h6 fw-5">Rustin C.</span><br>
+                                        </p>
+                                        <img src="/img/index-page/person8.webp" width="48" height="48"
+                                             class="rounded-circle"
+                                             alt="" data-aos="fade">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="card p-4 mt-3 border-0" data-aos="fade-right">
+                                <div class="card-body">
+                                    <div class="text-dark py-2 fs-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-half" viewBox="0 0 16 16">
+                                            <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star" viewBox="0 0 16 16">
+                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                        </svg>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>"BudgetMate has exceeded my expectations! The budgeting tools are intuitive,
+                                            and the app helps me stay on top of my spending without feeling overwhelmed.
+                                            I especially love the goal-setting feature, which has motivated me to save
+                                            more consistently. Definitely worth the download!"
+                                        </p>
+                                    </blockquote>
+                                    <div class="d-flex justify-content-between border-top pt-3">
+                                        <p class="card-text">
+                                            <span class="h6 fw-5">Richard T.</span><br>
+                                        </p>
+                                        <img src="/img/index-page/person14.webp" width="48" height="48"
+                                             class="rounded-circle" alt="" data-aos="fade">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="card p-4 mt-3 border-0" data-aos="fade-up">
+                                <div class="card-body">
+                                    <div class="text-dark py-2 fs-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-half" viewBox="0 0 16 16">
+                                            <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"/>
+                                        </svg>
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>"BudgetMate has made managing my finances so much easier. The budgeting tools
+                                            are intuitive, and I appreciate how it helps me track my expenses in real
+                                            time. I've already noticed improvements in my saving habits. The only
+                                            downside is that I'd love to see more customization options, but overall,
+                                            it's a fantastic app!"
+                                        </p>
+                                    </blockquote>
+                                    <div class="d-flex justify-content-between border-top pt-3">
+                                        <p class="card-text">
+                                            <span class="h6 fw-5">Harry W.</span><br>
+                                        </p>
+                                        <img src="/img/index-page/person13.webp" width="48" height="48"
+                                             class="rounded-circle"
+                                             alt="" data-aos="fade">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 col-xl-4">
+                            <div class="card p-4 shadow mt-3 border-0" data-aos="fade-left">
+                                <div class="card-body">
+                                    <div class="text-dark py-2 fs-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="#2d4161" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+
+                                    </div>
+                                    <blockquote class="blockquote">
+                                        <p>"Absolutely love BudgetMate! It’s been a total game-changer for managing my
+                                            finances. The app is easy to use, helps me track my spending, and I’ve
+                                            already started hitting my savings goals. I feel much more in control of
+                                            my money now. Highly recommend it to anyone looking to take their finances
+                                            to the next level!"
+                                        </p>
+                                    </blockquote>
+                                    <div class="d-flex justify-content-between border-top pt-3">
+                                        <p class="card-text">
+                                            <span class="h6 fw-5">Lizzie S.</span><br>
+                                        </p>
+                                        <img src="/img/index-page/person18.webp" width="48" height="48"
+                                             class="rounded-circle"
+                                             alt="" data-aos="fade">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light">
+        <div class="container py-vh-3">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-lg-8 text-center">
+                    <h3 class="fs-2">Stay in touch with our<span class="fw-bold dark-blue">
+              monthly and free</span>
+                        newsletter!
+                    </h3></div>
+                <div class="col-12 col-lg-8 text-center">
+                    <div class="row">
+                        <div class="grouped-inputs border p-2 bg-light">
+                            <div class="row">
+                                <div class="col-12 col-md">
+                                    <form class="form-floating">
+                                        <input type="email" class="form-control p-3" id="floatingInput"
+                                               placeholder="name@example.com">
+                                        <label for="floatingInput">Email address</label>
+                                    </form>
+                                </div>
+                                <div class="col-12 col-md-auto mt-2 mt-md-0">
+                                    <button class="btn py-3 px-5 w-100 btn-dark"
+                                            aria-label="Subscribe to our newsletter">Subscribe
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-vh-6 dark-blue-background text-light w-100 overflow-hidden" id="contactus">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8 text-center" data-aos="fade">
+                        <h2 class="display-6 mb-5"> We’re committed to providing you with the best experience.
+                            If you have any questions, feedback, or need help, feel free to contact us.
+                            We look forward to hearing from you!
+                        </h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="/contact" class="btn btn-secondary btn-xl shadow me-3 mt-4" data-aos="fade-down">Contact
+                            Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer id="custom-footer">
+    <div id="custom-footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewbox="0 0 24 24">
+            <image href="/img/logo/blue-back-logo.svg" width="24" height="24"/>
+        </svg>
+        <strong>BudgetMate, Inc.</strong>
+    </div>
+    <address class="footer-details">Nationalestraat 5, 2000 Antwerpen, Belgium</address>
+</footer>
+</body>
+</html>
