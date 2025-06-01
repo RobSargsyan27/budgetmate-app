@@ -20,7 +20,7 @@ async function updateUserDetails(token, id, payload) {
   Object.keys(payload).forEach(field => !payload[field] && delete payload[field]);
 
   const response = await fetch(`/api/v1/user/${id}`, {
-    method: 'POST',
+    method: 'PATCH',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
     body: JSON.stringify(payload)
   });
@@ -88,8 +88,10 @@ function setUpdateUserListener(token, user){
     };
     const result = await updateUserDetails(token, user.id, payload);
 
-    setFormDetails(result);
-    submitButton.active = false;
+    setFormDetails(result)
+    submitButton.blur();
+
+    document.getElementById('updateProfileForm').focus()
   });
 }
 
