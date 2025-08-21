@@ -73,7 +73,7 @@ async function getUserRecordCategories(token) {
 }
 
 async function getUserAccounts(token) {
-  const response = await fetch('api/v2/account', {
+  const response = await fetch('api/v2/accounts', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
   });
