@@ -1365,7 +1365,7 @@ img {
 }
 
 #contact-bg {
-  background-image: url('../img/contact-page/animation1.png');
+  background-image: url('../img/contact/animation1.png');
 }
 
 #inputMessage {
@@ -1379,7 +1379,7 @@ img {
 }
 
 #index-page-intro-animation {
-  background-image: url("../img/index-page/animation1.png");
+  background-image: url("../img/index/animation1.png");
 }
 
 @media (max-width: 991px) {
