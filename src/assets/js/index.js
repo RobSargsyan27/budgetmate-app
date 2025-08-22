@@ -40,6 +40,7 @@ async function renderPage(componentName) {
         mainContent.innerHTML = await FetchHtmlLib.fetch(componentName)
         await componentFns[componentName]()
     } catch (error) {
+        console.log(error)
         await renderErrorPage()
     }
 }

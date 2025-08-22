@@ -199,8 +199,7 @@ class Generic {
         const token = localStorage.getItem('token')
 
         if (!token) {
-          console.log('generic login ref')
-            // window.location.href = '/login'
+            window.location.href = '/login'
         }
 
         await AuthLib.validateToken(token)

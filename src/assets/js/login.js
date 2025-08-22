@@ -7,7 +7,7 @@ import 'joi-browser/dist/joi-browser'
 import '../css/theme.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-import { AuthApi } from './api'
+import {AuthApi} from './api'
 
 function showMessage(message, text, type, color) {
     message.style.display = 'block'
@@ -30,20 +30,14 @@ function setLoginFormListener(loginForm, message) {
         const password = document.getElementById('inputPassword').value
 
         try {
-            const response = await AuthApi.loginUser({ email, password })
+            const response = await AuthApi.loginUser({email, password})
+            const { token } = response
 
-            if (response.ok) {
-                const { token } = response
-
-                if (token) {
-                    const activity = { page: 'User logged in.', date: new Date() }
-                    localStorage.setItem('token', token)
-                    sessionStorage.setItem('activityLog', JSON.stringify([ activity ]))
-                    window.location.href = '/dashboard'
-                }
-            } else {
-                const { message: text } = response
-                showMessage(message, text, 'alert-danger', 'red')
+            if (token) {
+                const activity = {page: 'User logged in.', date: new Date()}
+                localStorage.setItem('token', token)
+                sessionStorage.setItem('activityLog', JSON.stringify([activity]))
+                window.location.href = '/dashboard'
             }
         } catch (error) {
             showMessage(message, 'An error occurred. Please try again later.', 'alert-danger', 'red')

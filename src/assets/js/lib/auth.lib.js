@@ -9,8 +9,7 @@ class AuthLib {
     static async validateToken(token) {
         try {
             const response = await AuthApi.validateUserToken({ token })
-            console.log(response)
-            if (!response.ok || !response?.isTokenValid) {
+            if (!response.isTokenValid) {
                 console.log('not valid')
                 window.location.href = '/login'
             }

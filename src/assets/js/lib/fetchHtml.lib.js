@@ -10,6 +10,6 @@ class FetchHtmlLib {
     }
 }
 
-FetchHtmlLib.BASE_URL = '/src/assets/components'
+FetchHtmlLib.BASE_URL = '/components'
 
 module.exports = FetchHtmlLib

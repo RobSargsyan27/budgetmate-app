@@ -4,10 +4,10 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const PurgecssPlugin = require('purgecss-webpack-plugin').PurgeCSSPlugin
 const glob = require('glob-all')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     devtool: 'source-map',
-    mode: 'development',
     entry: {
         index: './src/assets/js/index.js',
         login: './src/assets/js/login.js',
@@ -32,7 +32,7 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'img/[name].[ext]'
+                    filename: 'img/[name].[contenthash][ext]'
                 }
             },
             {
@@ -50,18 +50,29 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: 'index.html',
-            chunks: [ 'index' ]
+            chunks: [ 'index' ],
+            inject: true
         }),
         new HtmlWebpackPlugin({
             template: './src/login.html',
             filename: 'login.html',
-            chunks: [ 'login' ]
+            chunks: [ 'login' ],
+            inject: true
         }),
         new HtmlWebpackPlugin({
             template: './src/register.html',
             filename: 'register.html',
-            chunks: [ 'register' ]
-        })
+            chunks: [ 'register' ],
+            inject: true
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/assets/components'),
+                    to: path.resolve(__dirname, 'dist/components')
+                },
+            ],
+        }),
     ],
     optimization: {
         minimize: true,
