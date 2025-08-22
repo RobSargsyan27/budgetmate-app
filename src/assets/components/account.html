@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <h1 class="h3 mb-4 text-gray-800" id="accountName"></h1>
+  <div class="col-lg-12 d-flex flex-column">
+    <div class="card mb-4 p-4" id="accountCard">
+      <form id="updateAccountForm" class="gd-1">
+        <div class="form-group">
+          <label for="updateAccountName"><i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>Name</label>
+          <input type="text" class="form-control" id="updateAccountName" required>
+        </div>
+        <div class="form-group">
+          <label for="updateAccountCurrentBalance"><i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>Current Balance</label>
+          <input type="number" class="form-control" id="updateAccountCurrentBalance" required>
+        </div>
+        <div class="form-group">
+          <label for="updateAccountCurrency"><i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>Currency</label>
+          <div id="updateAccountCurrency" class="form-control">Update Currency</div>
+        </div>
+        <div class="form-group">
+          <label for="updateAccountType"><i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>Account Type</label>
+          <select id="updateAccountType" class="form-control">
+            <option value="GENERAL">General</option>
+            <option value="CASH">Cash</option>
+            <option value="CREDIT_CARD">Credit Card</option>
+            <option value="SAVINGS_ACCOUNT">Savings Account</option>
+            <option value="BONUS">Bonus</option>
+          </select>
+        </div>
+        <div class="form-group d-flex align-items-center">
+          <label for="updateAccountAvatarColor" class="form-label">Avatar Color</label>
+          <input class="form-control form-control-lg wd-1 ml-5" id="updateAccountAvatarColor" type="color" value="#ff5733">
+        </div>
+        <div class="gd-r1 d-flex flex-row justify-content-between">
+          <button id="submitAccountButton" class="btn btn-primary btn-xl form-btn mb-3 mt-4" type="submit" form="updateAccountForm">Save</button>
+          <button id="deleteAccountButton" class="btn btn-danger btn-xl form-btn mb-3 mt-4">Delete Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

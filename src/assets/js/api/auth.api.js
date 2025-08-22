@@ -1,6 +1,4 @@
 class AuthApi {
-    static BASE_URL = 'http://app.budgetmate.com/api/v2/auth'
-
     /**
      * @param {Object} payload
      * @returns {Promise<void>}
@@ -40,7 +38,7 @@ class AuthApi {
      * @returns {Promise<Object>}
      * @description Validate user token.
      */
-    static async validateUserToken(payload){
+    static async validateUserToken(payload) {
         const response = await fetch(`${AuthApi.BASE_URL}/validate-token`, {
             method: 'POST',
             headers: {
@@ -53,5 +51,7 @@ class AuthApi {
         return response.json()
     }
 }
+
+AuthApi.BASE_URL = 'http://app.budgetmate.com/api/v2/auth'
 
 module.exports = AuthApi

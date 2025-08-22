@@ -1,4 +1,4 @@
-const {AuthApi} = require("../api");
+const { AuthApi } = require('../api')
 
 class AuthLib {
     /**
@@ -8,12 +8,15 @@ class AuthLib {
      */
     static async validateToken(token) {
         try {
-            const response = await AuthApi.validateUserToken({token})
+            const response = await AuthApi.validateUserToken({ token })
+            console.log(response)
             if (!response.ok || !response?.isTokenValid) {
-                window.location.href = '/login';
+                console.log('not valid')
+                window.location.href = '/login'
             }
         } catch (error) {
-            window.location.href = '/login';
+            console.log('not valid error')
+            window.location.href = '/login'
         }
     }
 }

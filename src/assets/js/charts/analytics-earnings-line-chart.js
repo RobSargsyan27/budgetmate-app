@@ -1,14 +1,16 @@
+const { Chart } = require('chart.js')
+
 const { AnalyticsApi } = require('../api')
 
 class AnalyticsEarningsLineChart {
-    static async renderLineChart(chart, token, startDate, endDate){
-        const {labels, data} = await AnalyticsApi.getUserRecordsOverviewLineChart(token, startDate, endDate, 'INCOME')
-        const earningsChartContext = document.getElementById("earningsLineChart").getContext("2d")
+    static async renderLineChart(chart, token, startDate, endDate) {
+        const { labels, data } = await AnalyticsApi.getUserRecordsOverviewLineChart(token, startDate, endDate, 'INCOME')
+        const earningsChartContext = document.getElementById('earningsLineChart').getContext('2d')
 
-        if(chart){
+        if (chart) {
             chart.data.labels = labels
-            chart.data.datasets[0].data = data;
-            chart.update();
+            chart.data.datasets[0].data = data
+            chart.update()
             return chart
         }
 
@@ -16,14 +18,14 @@ class AnalyticsEarningsLineChart {
             type: 'line',
             data: {
                 labels,
-                datasets: [{
+                datasets: [ {
                     label: 'Earnings',
                     data,
-                    borderColor: "#567cb3",
+                    borderColor: '#567cb3',
                     backgroundColor: 'transparent',
                     fill: true,
                     tension: 0.4
-                }]
+                } ]
             },
             options: {
                 responsive: true,
@@ -51,39 +53,41 @@ class AnalyticsEarningsLineChart {
                     }
                 }
             }
-        });
+        })
     }
 
-    static async init(){
-        const token = localStorage.getItem("token")
+    static async init() {
+        const token = localStorage.getItem('token')
 
-        let startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1,0,0,0,0);
-        let endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0,0,0,0);
+        let startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1, 0, 0, 0, 0)
+        let endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0, 0)
 
         const earningsLineChart = await AnalyticsEarningsLineChart.renderLineChart(undefined, token, startDate, endDate)
 
-        document.getElementById("previousMonthEarningLineChart").addEventListener('click', async () => {
-            const earningsLineChartDate = document.getElementById("earningsLineChartDate")
+        document.getElementById('previousMonthEarningLineChart').addEventListener('click', async () => {
+            const earningsLineChartDate = document.getElementById('earningsLineChartDate')
             const dateOptions = { year: 'numeric', month: 'short' }
 
-            startDate = new Date(startDate.getFullYear(), startDate.getMonth() - 1);
-            endDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1);
+            startDate = new Date(startDate.getFullYear(), startDate.getMonth() - 1)
+            endDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1)
 
-            earningsLineChartDate.textContent =
-                `${startDate.toLocaleString('en-US', dateOptions)} - ${endDate.toLocaleString('en-US', dateOptions)}`
+            earningsLineChartDate.textContent = `${startDate.toLocaleString('en-US', dateOptions)} - ${
+                endDate.toLocaleString('en-US', dateOptions)
+            }`
 
             await AnalyticsEarningsLineChart.renderLineChart(earningsLineChart, token, startDate, endDate)
         })
 
-        document.getElementById("nextMonthEarningLineChart").addEventListener('click', async () => {
-            const earningsLineChartDate = document.getElementById("earningsLineChartDate")
+        document.getElementById('nextMonthEarningLineChart').addEventListener('click', async () => {
+            const earningsLineChartDate = document.getElementById('earningsLineChartDate')
             const dateOptions = { year: 'numeric', month: 'short' }
 
-            startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1);
-            endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1);
+            startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1)
+            endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1)
 
-            earningsLineChartDate.textContent =
-                `${startDate.toLocaleString('en-US', dateOptions)} - ${endDate.toLocaleString('en-US', dateOptions)}`
+            earningsLineChartDate.textContent = `${startDate.toLocaleString('en-US', dateOptions)} - ${
+                endDate.toLocaleString('en-US', dateOptions)
+            }`
 
             await AnalyticsEarningsLineChart.renderLineChart(earningsLineChart, token, startDate, endDate)
         })

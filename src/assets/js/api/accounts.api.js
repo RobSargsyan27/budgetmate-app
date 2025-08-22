@@ -1,17 +1,15 @@
 class AccountsApi {
-    static BASE_URL = 'http://app.budgetmate.com/api/v3/accounts'
-
     /**
      * @param {string} token
      * @returns {Promise<Array<Object>>}
      * @description Get user accounts.
      */
-    static async getUserAccounts(token){
+    static async getUserAccounts(token) {
         const accounts = await fetch(AccountsApi.BASE_URL, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -24,7 +22,7 @@ class AccountsApi {
      * @returns {Promise<Object>}
      * @description Add user account.
      */
-    static async addUserAccount(token, payload){
+    static async addUserAccount(token, payload) {
         const account = await fetch(AccountsApi.BASE_URL, {
             method: 'POST',
             headers: {
@@ -44,12 +42,12 @@ class AccountsApi {
      * @returns {Promise<Object>}
      * @description Get user account.
      */
-    static async getUserAccount(token, id){
+    static async getUserAccount(token, id) {
         const account = await fetch(`${AccountsApi.BASE_URL}/${id}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -63,7 +61,7 @@ class AccountsApi {
      * @returns {Promise<Object>}
      * @description Update user account.
      */
-    static async updateUserAccount(token, id, payload){
+    static async updateUserAccount(token, id, payload) {
         const account = await fetch(`${AccountsApi.BASE_URL}/${id}`, {
             method: 'PATCH',
             headers: {
@@ -83,15 +81,17 @@ class AccountsApi {
      * @returns {Promise<void>}
      * @description Delete user account.
      */
-    static async deleteUserAccount(token, id){
+    static async deleteUserAccount(token, id) {
         await fetch(`${AccountsApi.BASE_URL}/${id}`, {
             method: 'DELETE',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
     }
 }
+
+AccountsApi.BASE_URL = 'http://app.budgetmate.com/api/v3/accounts'
 
 module.exports = AccountsApi

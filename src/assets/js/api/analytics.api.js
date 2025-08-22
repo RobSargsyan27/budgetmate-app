@@ -1,6 +1,4 @@
 class AnalyticsApi {
-    static BASE_URL = 'http://app.budgetmate.com/api/v3/analytics'
-
     /**
      * @param {string} token
      * @returns {Promise<Object>}
@@ -10,8 +8,8 @@ class AnalyticsApi {
         const analytics = await fetch(`${AnalyticsApi.BASE_URL}/dashboard`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -27,8 +25,8 @@ class AnalyticsApi {
         const analytics = await fetch(`${AnalyticsApi.BASE_URL}/dashboard/categories-pie`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -44,8 +42,8 @@ class AnalyticsApi {
         const analytics = await fetch(`${AnalyticsApi.BASE_URL}/dashboard/expenses-line-chart`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -68,10 +66,11 @@ class AnalyticsApi {
             {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${token}`
                 }
-            })
+            }
+        )
 
         return overview.json()
     }
@@ -93,13 +92,16 @@ class AnalyticsApi {
             {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${token}`
                 }
-            })
+            }
+        )
 
         return overview.json()
     }
 }
+
+AnalyticsApi.BASE_URL = 'http://app.budgetmate.com/api/v3/analytics'
 
 module.exports = AnalyticsApi

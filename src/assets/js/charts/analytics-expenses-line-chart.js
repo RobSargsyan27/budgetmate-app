@@ -1,14 +1,21 @@
+const { Chart } = require('chart.js')
+
 const { AnalyticsApi } = require('../api')
 
 class AnalyticsExpensesLineChart {
-    static async renderExpenseLineChart(chart, token, startDate, endDate){
-        const {labels, data} = await AnalyticsApi.getUserRecordsOverviewLineChart(token, startDate, endDate, 'EXPENSE')
-        const expensesChartContext = document.getElementById("expensesLineChart").getContext("2d")
+    static async renderExpenseLineChart(chart, token, startDate, endDate) {
+        const { labels, data } = await AnalyticsApi.getUserRecordsOverviewLineChart(
+            token,
+            startDate,
+            endDate,
+            'EXPENSE'
+        )
+        const expensesChartContext = document.getElementById('expensesLineChart').getContext('2d')
 
-        if(chart){
+        if (chart) {
             chart.data.labels = labels
-            chart.data.datasets[0].data = data;
-            chart.update();
+            chart.data.datasets[0].data = data
+            chart.update()
             return chart
         }
 
@@ -16,14 +23,14 @@ class AnalyticsExpensesLineChart {
             type: 'line',
             data: {
                 labels,
-                datasets: [{
+                datasets: [ {
                     label: 'Expenses',
                     data,
-                    borderColor: "#567cb3",
+                    borderColor: '#567cb3',
                     backgroundColor: 'transparent',
                     fill: true,
                     tension: 0.4
-                }]
+                } ]
             },
             options: {
                 responsive: true,
@@ -51,39 +58,46 @@ class AnalyticsExpensesLineChart {
                     }
                 }
             }
-        });
+        })
     }
 
-    static async init(){
-        const token = localStorage.getItem("token")
+    static async init() {
+        const token = localStorage.getItem('token')
 
-        let startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1,0,0,0,0);
-        let endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0,0,0,0);
+        let startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1, 0, 0, 0, 0)
+        let endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0, 0)
 
-        const expensesLineChart = await AnalyticsExpensesLineChart.renderExpenseLineChart(undefined, token, startDate, endDate)
+        const expensesLineChart = await AnalyticsExpensesLineChart.renderExpenseLineChart(
+            undefined,
+            token,
+            startDate,
+            endDate
+        )
 
-        document.getElementById("previousMonthExpenseLineChart").addEventListener('click', async () => {
-            const expensesLineChartDate = document.getElementById("expensesLineChartDate")
+        document.getElementById('previousMonthExpenseLineChart').addEventListener('click', async () => {
+            const expensesLineChartDate = document.getElementById('expensesLineChartDate')
             const dateOptions = { year: 'numeric', month: 'short' }
 
-            startDate = new Date(startDate.getFullYear(), startDate.getMonth() - 1);
-            endDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1);
+            startDate = new Date(startDate.getFullYear(), startDate.getMonth() - 1)
+            endDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1)
 
-            expensesLineChartDate.textContent =
-                `${startDate.toLocaleString('en-US', dateOptions)} - ${endDate.toLocaleString('en-US', dateOptions)}`
+            expensesLineChartDate.textContent = `${startDate.toLocaleString('en-US', dateOptions)} - ${
+                endDate.toLocaleString('en-US', dateOptions)
+            }`
 
             await AnalyticsExpensesLineChart.renderExpenseLineChart(expensesLineChart, token, startDate, endDate)
         })
 
-        document.getElementById("nextMonthExpenseLineChart").addEventListener('click', async () => {
-            const expensesLineChartDate = document.getElementById("expensesLineChartDate")
+        document.getElementById('nextMonthExpenseLineChart').addEventListener('click', async () => {
+            const expensesLineChartDate = document.getElementById('expensesLineChartDate')
             const dateOptions = { year: 'numeric', month: 'short' }
 
-            startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1);
-            endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1);
+            startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1)
+            endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1)
 
-            expensesLineChartDate.textContent =
-                `${startDate.toLocaleString('en-US', dateOptions)} - ${endDate.toLocaleString('en-US', dateOptions)}`
+            expensesLineChartDate.textContent = `${startDate.toLocaleString('en-US', dateOptions)} - ${
+                endDate.toLocaleString('en-US', dateOptions)
+            }`
 
             await AnalyticsExpensesLineChart.renderExpenseLineChart(expensesLineChart, token, startDate, endDate)
         })

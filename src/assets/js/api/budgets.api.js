@@ -1,6 +1,4 @@
 class BudgetsApi {
-    static BASE_URL = 'http://app.budgetmate.com/api/v3/budgets'
-
     /**
      * @param {string} token
      * @returns {Promise<Array<Object>>}
@@ -10,8 +8,8 @@ class BudgetsApi {
         const budgets = await fetch(BudgetsApi.BASE_URL, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -24,7 +22,7 @@ class BudgetsApi {
      * @returns {Promise<Object>}
      * @description Add user budget.
      */
-    static async addUserBudget(token, payload){
+    static async addUserBudget(token, payload) {
         const budgets = await fetch(BudgetsApi.BASE_URL, {
             method: 'POST',
             headers: {
@@ -43,12 +41,12 @@ class BudgetsApi {
      * @returns {Promise<Array<Object>>}
      * @description Get user budgets current balance.
      */
-    static async getUserBudgetsCurrentBalance(token){
+    static async getUserBudgetsCurrentBalance(token) {
         const budgetsCurrentBalance = await fetch(`${BudgetsApi.BASE_URL}/current-balance`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -64,8 +62,8 @@ class BudgetsApi {
         const budgetsCurrentBalance = await fetch(`${BudgetsApi.BASE_URL}/report`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -78,12 +76,12 @@ class BudgetsApi {
      * @returns {Promise<Object>}
      * @description Get user budget.
      */
-    static async getUserBudget(token, id){
+    static async getUserBudget(token, id) {
         const budget = await fetch(`${BudgetsApi.BASE_URL}/${id}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -97,7 +95,7 @@ class BudgetsApi {
      * @returns {Promise<Object>}
      * @description Update user budget.
      */
-    static async updateUserBudget(token, id, payload){
+    static async updateUserBudget(token, id, payload) {
         const budget = await fetch(`${BudgetsApi.BASE_URL}/${id}`, {
             method: 'PATCH',
             headers: {
@@ -121,11 +119,13 @@ class BudgetsApi {
         await fetch(`${BudgetsApi.BASE_URL}/${id}`, {
             method: 'DELETE',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            }
         })
     }
 }
+
+BudgetsApi.BASE_URL = 'http://app.budgetmate.com/api/v3/budgets'
 
 module.exports = BudgetsApi

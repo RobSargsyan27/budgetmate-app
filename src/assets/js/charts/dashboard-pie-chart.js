@@ -1,7 +1,9 @@
+const { Chart } = require('chart.js')
+
 const { AnalyticsApi } = require('../api')
 
 class DashboardPieChart {
-    static async renderCategoryPieChart(token){
+    static async renderCategoryPieChart(token) {
         const expensesTopCategoriesPieChart = document.getElementById('expensesTopCategoriesPieChart')
         const expensesTopCategoriesPieChartContext = expensesTopCategoriesPieChart.getContext('2d')
         const { labels, data } = await AnalyticsApi.getUserDashboardCategoryPieChart(token)
@@ -10,7 +12,7 @@ class DashboardPieChart {
             type: 'pie',
             data: {
                 labels,
-                datasets: [{
+                datasets: [ {
                     data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.8)',
@@ -27,7 +29,7 @@ class DashboardPieChart {
                         'rgba(153, 102, 255, 1)'
                     ],
                     borderWidth: 1
-                }]
+                } ]
             },
             options: {
                 responsive: true,
@@ -42,18 +44,18 @@ class DashboardPieChart {
                     tooltip: {
                         enabled: true,
                         callbacks: {
-                            label: function (tooltipItem) {
-                                const value = tooltipItem.raw;
-                                return `${tooltipItem.label}: $${value}`;
+                            label: function(tooltipItem) {
+                                const value = tooltipItem.raw
+                                return `${tooltipItem.label}: $${value}`
                             }
                         }
                     }
                 }
             }
-        });
+        })
     }
 
-    static async init(){
+    static async init() {
         const token = localStorage.getItem('token')
 
         await DashboardPieChart.renderCategoryPieChart(token)
@@ -61,4 +63,3 @@ class DashboardPieChart {
 }
 
 module.exports = DashboardPieChart
-

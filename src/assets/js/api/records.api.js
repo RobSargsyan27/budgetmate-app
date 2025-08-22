@@ -1,13 +1,11 @@
 class RecordsApi {
-    static BASE_URL = 'http://app.budgetmate.com/api/v3/records'
-
     /**
      * @param {string} token
      * @param {Object} payload
      * @returns {Promise<Array<Object>>}
      * @description Search user records.
      */
-    static async searchUserRecords(token, payload){
+    static async searchUserRecords(token, payload) {
         const records = await fetch(`${RecordsApi.BASE_URL}/search`, {
             method: 'POST',
             headers: {
@@ -24,11 +22,11 @@ class RecordsApi {
     /**
      * @param {string} token
      * @param {Object} payload
-     * @returns {Promise<Response>}
+     * @returns {Promise<number>}
      * @description Count user records.
      */
-    static countUserRecords(token, payload){
-        return fetch(`${RecordsApi.BASE_URL}/count`, {
+    static async countUserRecords(token, payload) {
+        const count = await fetch(`${RecordsApi.BASE_URL}/count`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,6 +35,8 @@ class RecordsApi {
             },
             body: JSON.stringify(payload)
         })
+
+        return Number.parseInt(count)
     }
 
     /**
@@ -45,7 +45,7 @@ class RecordsApi {
      * @returns {Promise<Blob>}
      * @description Get user records report.
      */
-    static async getUserRecordsReport(token, payload){
+    static async getUserRecordsReport(token, payload) {
         const records = await fetch(`${RecordsApi.BASE_URL}/report`, {
             method: 'POST',
             headers: {
@@ -64,12 +64,12 @@ class RecordsApi {
      * @returns {Promise<Array<Object>>}
      * @description Get user records.
      */
-    static async getUserRecords(token){
+    static async getUserRecords(token) {
         const records = await fetch(RecordsApi.BASE_URL, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -82,7 +82,7 @@ class RecordsApi {
      * @returns {Promise<Object>}
      * @description Add user record.
      */
-    static async addUserRecord(token, payload){
+    static async addUserRecord(token, payload) {
         const record = await fetch(RecordsApi.BASE_URL, {
             method: 'POST',
             headers: {
@@ -102,12 +102,12 @@ class RecordsApi {
      * @returns {Promise<Object>}
      * @description Get user record.
      */
-    static async getUserRecord(token, id){
+    static async getUserRecord(token, id) {
         const record = await fetch(`${RecordsApi.BASE_URL}/${id}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
 
@@ -121,7 +121,7 @@ class RecordsApi {
      * @returns {Promise<Object>}
      * @description Update user record.
      */
-    static async updateUserRecord(token, id, payload){
+    static async updateUserRecord(token, id, payload) {
         const record = await fetch(`${RecordsApi.BASE_URL}/${id}`, {
             method: 'PATCH',
             headers: {
@@ -141,15 +141,17 @@ class RecordsApi {
      * @returns {Promise<void>}
      * @description Delete user record.
      */
-    static async deleteUserRecord(token, id){
+    static async deleteUserRecord(token, id) {
         await fetch(`${RecordsApi.BASE_URL}/${id}`, {
             method: 'DELETE',
             headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             }
         })
     }
 }
+
+RecordsApi.BASE_URL = 'http://app.budgetmate.com/api/v3/records'
 
 module.exports = RecordsApi

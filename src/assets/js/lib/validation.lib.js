@@ -1,3 +1,5 @@
+const { Joi } = require('joi-browser')
+
 class ValidationLib {
     /**
      * @returns {Object}
@@ -12,7 +14,7 @@ class ValidationLib {
             city: Joi.string(),
             postalCode: Joi.string(),
             avatarColor: Joi.string().regex(/^#?[0-9A-Fa-f]{6}$/)
-        });
+        })
     }
 }
 

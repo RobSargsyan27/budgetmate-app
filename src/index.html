@@ -6,242 +6,437 @@
     <meta name="description" content="A web-application to help you manage your finance.">
     <meta name="author" content="Robert Sargsyan">
 
-    <title>Dashboard</title>
-    <link rel="icon" type="image/png" href="./assets/img/logo/logo.png">
+    <title></title>
+    <link rel="icon" type="image/png" href="./img/logo/logo.png">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   </head>
 
-  <body id="page-top" style="display: none">
+  <body id="page-top">
     <div id="wrapper">
-      <!--#include virtual="/components/nav-sidebar.html" -->
+      <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <li>
+          <a class="sidebar-brand d-flex align-items-center justify-content-center flex-column mt-3 mb-2 spa-nav" data-ref="dashboard">
+            <div class="sidebar-brand-icon">
+              <img src="./img/logo/blue-back-logo.png" alt="logo" width="48" height="48">
+            </div>
+            <div class="sidebar-brand-text mx-3 mt-2">BudgetMate</div>
+          </a>
+          <hr class="sidebar-divider my-0">
+        </li>
+        <li class="nav-item mt-2 bg-lightgray-hover">
+          <a class="nav-link" data-ref="dashboard"><i class="fas fa-fw fa-tachometer-alt spa-nav"></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-item mt-2 bg-lightgray-hover">
+          <a class="nav-link" data-ref="records"><i class="fa fa-history spa-nav" aria-hidden="true"></i><span class="sidebar.recordHistory">Records History</span></a>
+        </li>
+        <li class="nav-item mt-2 bg-lightgray-hover">
+          <a class="nav-link" data-ref="budgets"><i class="fa fa-star spa-nav" aria-hidden="true"></i><span class="sidebar.budgets">Budgets</span></a>
+        </li>
+        <li class="nav-item mt-2 bg-lightgray-hover">
+          <a class="nav-link" data-ref="analytics"><i class="fa fa-chart-line spa-nav"></i><span>Analytics</span></a>
+        </li>
+        <li class="nav-item mt-2 bg-lightgray-hover">
+          <a class="nav-link" data-ref="profile"><i class="fa fa-user spa-nav" aria-hidden="true"></i><span>Profile</span></a>
+        </li>
+        <li class="text-center d-none d-md-inline mt-4">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </li>
+      </ul>
 
       <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
-          <!--#include virtual="/components/nav-topbar.html" -->
-
-          <div class="container-fluid">
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800 dashboard.action">Dashboard</h1>
-            </div>
-
-            <div class="row justify-content-around mb-3">
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100 py-2">
-                  <div
-                    type="button"
-                    class="card-body d-flex flex-column justify-content-center align-items-center"
-                    data-toggle="modal"
-                    data-target="#addRecordModal"
-                  >
-                    <span
-                      class="text-lg font-weight-bold text-uppercase mb-1 dashboard.addRecordModal.addRecord"
-                    >Add Record</span>
-                    <i class="fas fa-plus-circle fa-2x text-gray-300"></i>
+          <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown no-arrow mx-1">
+                <div class="dropdown-list-language dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="languageDropdown">
+                  <div class="dropdown-item d-flex flex-row align-items-center" id="lang-en">
+                    <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+                      <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect>
+                      <path d="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z" fill="#a62842"></path>
+                      <path d="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z" fill="#a62842"></path>
+                      <path fill="#a62842" d="M2 11.385H31V13.231H2z"></path>
+                      <path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path>
+                      <path fill="#a62842" d="M1 18.769H31V20.615H1z"></path>
+                      <path d="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z" fill="#a62842"></path>
+                      <path d="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z" fill="#a62842"></path>
+                      <path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path>
+                      <path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path>
+                      <path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path>
+                      <path fill="#fff" d="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z"></path>
+                    </svg>
+                    <div class="text-gray-500">English</div>
+                  </div>
+                  <div class="dropdown-item d-flex flex-row align-items-center" id="lang-nl">
+                    <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+                      <path fill="#fff" d="M1 11H31V21H1z"></path>
+                      <path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" fill="#a1292a"></path>
+                      <path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" transform="rotate(180 16 24)" fill="#264387"></path>
+                      <path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path>
+                      <path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path>
+                    </svg>
+                    <div class="text-gray-500">Dutch</div>
                   </div>
                 </div>
-              </div>
+              </li>
 
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100 py-2">
-                  <div
-                    type="button"
-                    class="card-body d-flex flex-column justify-content-center align-items-center"
-                    data-toggle="modal"
-                    data-target="#addBudgetModal"
-                  >
-                    <span
-                      class="text-lg font-weight-bold text-uppercase mb-1 dashboard.action.addBudget"
-                    >Add Budget</span>
-                    <i class="fas fa-wallet fa-2x text-gray-300"></i>
-                  </div>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-bell fa-fw"></i>
+                  <span id="topNavbarNotificationCount" class="badge badge-danger badge-counter"></span>
+                </a>
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="topNavbarNotifications">
+                  <h6 class="dropdown-header">Notifications Center</h6>
                 </div>
-              </div>
+              </li>
 
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100 py-2">
-                  <div
-                    type="button"
-                    class="card-body d-flex flex-column justify-content-center align-items-center"
-                    data-toggle="modal"
-                    data-target="#addAccountModal"
-                  >
-                    <span
-                      class="text-lg font-weight-bold text-uppercase mb-1 dashboard.action.addAccount"
-                    >Add Account</span>
-                    <i class="fas fa-landmark fa-2x text-gray-300"></i>
-                  </div>
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="topNavUsername"></span>
+                  <div class="prf-avatar-small" id="topNavAvatar"></div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <button type="button" class="dropdown-item" data-toggle="modal" data-target="#activityModal">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity Log
+                  </button>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" id="activityLogButton">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                  </a>
                 </div>
-              </div>
-            </div>
+              </li>
+            </ul>
+          </nav>
 
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800 dashboard.accounts">Accounts</h1>
-            </div>
-
-            <div class="row mb-3" id="dashboardAccounts"></div>
-
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800 dashboard.overview">Overview</h1>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card dark-blue-left-border h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="text-lg font-weight-bold dark-blue text-uppercase mb-1 dashboard.overview.monthlyEarnings"
-                        >
-                          Monthly Earnings
-                        </div>
-                        <div
-                          class="h5 mb-0 font-weight-bold text-gray-800"
-                          id="monthlyEarningsStat"
-                        >
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-money-bill fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card dark-blue-left-border h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="text-lg font-weight-bold dark-blue text-uppercase mb-1 dashboard.overview.annualEarnings"
-                        >
-                          Annual Earnings
-                        </div>
-                        <div
-                          class="h5 mb-0 font-weight-bold text-gray-800"
-                          id="annualEarningsStat"
-                        >
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-piggy-bank fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card dark-blue-left-border h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="text-lg font-weight-bold dark-blue text-uppercase mb-1 dashboard.overview.monthlyExpenses"
-                        >
-                          Monthly Expenses
-                        </div>
-                        <div
-                          class="h5 mb-0 font-weight-bold text-gray-800"
-                          id="monthlyExpensesStat"
-                        >
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-receipt fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card dark-blue-left-border h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="text-lg font-weight-bold dark-blue text-uppercase mb-1 dashboard.overview.monthlyOutlook"
-                        >
-                          Monthly Outlook
-                        </div>
-                        <div id="cashFlowStat"></div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-chart-bar fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xl-8 col-lg-11">
-                <div class="card shadow mb-4">
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6
-                      class="m-0 font-weight-bold text-primary dashboard.overview.monthlyExpensesOverview"
-                    >
-                      Monthly Expenses Overview
-                    </h6>
-                  </div>
-
-                  <div class="card-body">
-                    <div class="chart-area">
-                      <canvas id="monthlyExpensesLineChart"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6
-                      class="m-0 font-weight-bold text-primary dashboard.overview.topExpenseCategories"
-                    >
-                      Top Expense Categories
-                    </h6>
-                  </div>
-
-                  <div class="card-body">
-                    <div
-                      class="chart-pie pt-4 pb-2 d-flex justify-content-center"
-                    >
-                      <canvas id="expensesTopCategoriesPieChart"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="mainContent" style="display: none"></div>
         </div>
 
-        <!--#include virtual="/components/footer.html" -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; BudgetMate 2025</span>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
 
-    <!--#include virtual="/components/addRecordModal.html" -->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
-    <!--#include virtual="/components/addBudgetModal.html" -->
+    <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="addAccountModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title dashboard.action.addAccount" id="addAccountModalMessage">Add Account</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="accountTabs">
+              <li class="nav-item">
+                <a class="nav-link active dashboard.addAccountModal.newAccount" id="newAccountTab" data-toggle="tab" href="#newAccount">New Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dashboard.addAccountModal.existingAccount" id="existingAccountTab" data-toggle="tab" href="#existingAccount">Existing Account</a>
+              </li>
+            </ul>
+            <div class="tab-content mt-2" id="accountForms">
+              <div class="tab-pane fade show active" id="newAccount">
+                <form id="newAccountForm" class="gd-1">
+                  <div class="form-group">
+                    <label for="accountName" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="name">Name</span>
+                    </label>
+                    <input type="text" class="form-control" id="accountName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="accountCurrentBalance" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="account.currentBalance">Current Balance</span>
+                    </label>
+                    <input type="number" class="form-control" id="accountCurrentBalance" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="accountCurrency" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="currency">Currency</span>
+                    </label>
+                    <select name="accountCurrency" id="accountCurrency" class="form-control">
+                      <option name="USD" value="USD" id="currency-USD">USD</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="accountType" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="account.accountType">Account Type</span>
+                    </label>
+                    <select name="accountCurrency" id="accountType" class="form-control">
+                      <option name="GENERAL" value="GENERAL" id="accountType-GENERAL">General</option>
+                      <option name="CASH" value="CASH" id="accountType-CASH">Cash</option>
+                      <option name="CREDIT_CARD" value="CREDIT_CARD" id="accountType-CREDIT_CARD">Credit Card</option>
+                      <option name="SAVINGS_ACCOUNT" value="SAVINGS_ACCOUNT" id="accountType-SAVINGS_ACCOUNT">Savings Account</option>
+                      <option name="BONUS" value="BONUS" id="accountType-BONUS">Bonus</option>
+                    </select>
+                  </div>
+                  <div class="form-group d-flex justify-content-center align-items-center">
+                    <label for="accountAvatarColor" class="form-label">Account Color</label>
+                    <input class="form-control form-control-lg wd-1 ml-5" id="accountAvatarColor" type="color" value="#ff5733">
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane fade" id="existingAccount">
+                <form id="existingAccountForm" class="gd-1">
+                  <div class="form-group">
+                    <label for="existingAccountName" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="name">Name</span>
+                    </label>
+                    <input type="text" class="form-control" id="existingAccountName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="existingAccountOwnerUsername" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="account.ownerUsername">Owner's Username</span>
+                    </label>
+                    <input type="text" class="form-control" id="existingAccountOwnerUsername" required>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary modal.close" data-dismiss="modal" id="closeAccountModalButton">Close</button>
+            <button type="button" class="btn btn-primary dashboard.addAccountModal.addAccount" id="addAccountButton">Add Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!--#include virtual="/components/addAccountModal.html" -->
+    <div class="modal fade" id="addBudgetModal" tabindex="-1" role="dialog" aria-labelledby="addBudgetModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title dashboard.action.addBudget" id="addBudgetModalMessage">Add Budget</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="gd-1">
+              <div class="form-group">
+                <label for="budgetName" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="name">Name</span>
+                </label>
+                <input type="text" class="form-control" id="budgetName">
+              </div>
+              <div class="form-group">
+                <label for="budgetAmount" class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="amount">Amount</span>
+                </label>
+                <input type="number" class="form-control" id="budgetAmount">
+              </div>
+              <div class="gd-r1 form-group pb-2">
+                <div class="dropdown">
+                  <button class="btn" type="button" id="budgetRecordCategoriesDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="d-flex flex-row align-items-start">
+                  <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i>
+                  <span class="budget.category">Category</span>
+                  <i class="fas fa-angle-down ml-2 align-self-center"></i>
+                </span>
+                  </button>
+                  <div class="dropdown-menu overflow-scroll p-2" aria-labelledby="budgetRecordCategoriesDropdownButton" id="budgetRecordCategoriesDropdown"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary modal.close" data-dismiss="modal" id="closeBudgetModalButton">Close</button>
+            <button type="button" class="btn btn-primary dashboard.action.addBudget" id="addBudgetButton">Add Budget</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!--#include virtual="/components/scrollToTop.html" -->
+    <div class="modal fade" id="addRecordModal" tabindex="-1" role="dialog" aria-labelledby="addRecordModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title dashboard.addRecordModal.addRecord" id="exampleModalLabel">Add Record</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="recordTabs">
+              <li class="nav-item">
+                <a class="nav-link active dashboard.addRecordModal.expense" id="expenseTab" data-toggle="tab" href="#expense">Expense</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dashboard.addRecordModal.income" id="incomeTab" data-toggle="tab" href="#income">Income</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dashboard.addRecordModal.transfer" id="transferTab" data-toggle="tab" href="#transfer">Transfer</a>
+              </li>
+            </ul>
+            <div class="tab-content mt-2" id="recordForms">
+              <div class="tab-pane fade show active" id="expense">
+                <form id="expenseForm" class="gd-1" method="POST">
+                  <div class="form-group">
+                    <label for="expenseAmount" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="amount">Amount</span>
+                    </label>
+                    <input type="number" class="form-control" id="expenseAmount" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="expensePaymentTime">Date & Time</label>
+                    <input type="datetime-local" class="form-control" id="expensePaymentTime">
+                  </div>
+                  <div class="form-group">
+                    <label for="expenseRecordCategoryDropdown" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="record.category">Record Category</span>
+                    </label>
+                    <select name="expenseRecordCategoryDropdown" id="expenseRecordCategoryDropdown" class="form-control"></select>
+                  </div>
+                  <div class="form-group">
+                    <label for="expenseWithdrawalAccountDropdown" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="withdrawalAccount">Withdrawal Account</span>
+                    </label>
+                    <select name="expenseWithdrawalAccountDropdown" id="expenseWithdrawalAccountDropdown" class="form-control"></select>
+                  </div>
+                  <div class="form-group gd-r1">
+                    <label for="expenseNote">Note (max. 255 characters)</label>
+                    <textarea maxlength="255" class="form-control" id="expenseNote"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane fade" id="income">
+                <form id="incomeForm" class="gd-1">
+                  <div class="form-group">
+                    <label for="incomeAmount" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="amount">Amount</span>
+                    </label>
+                    <input type="number" class="form-control" id="incomeAmount" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="incomePaymentTime">Date & Time</label>
+                    <input type="datetime-local" class="form-control" id="incomePaymentTime">
+                  </div>
+                  <div class="form-group">
+                    <label for="incomeRecordCategoryDropdown" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="record.category">Record Category</span>
+                    </label>
+                    <select name="incomeRecordCategoryDropdown" id="incomeRecordCategoryDropdown" class="form-control"></select>
+                  </div>
+                  <div class="form-group">
+                    <label for="incomeReceivingAccountDropdown" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="receivingAccount">Receiving Account</span>
+                    </label>
+                    <select name="incomeReceivingAccountDropdown" id="incomeReceivingAccountDropdown" class="form-control"></select>
+                  </div>
+                  <div class="form-group gd-r1">
+                    <label for="incomeNote">Note (max. 255 characters)</label>
+                    <textarea class="form-control" id="incomeNote"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane fade" id="transfer">
+                <form id="transferForm" class="gd-1">
+                  <div class="form-group">
+                    <label for="transferAmount" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="amount">Amount</span>
+                    </label>
+                    <input type="number" class="form-control" id="transferAmount" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="transferPaymentTime">Date & Time</label>
+                    <input type="datetime-local" class="form-control" id="transferPaymentTime">
+                  </div>
+                  <div class="form-group">
+                    <label for="transferReceivingAccountDropdown" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="receivingAccount">Receiving Account</span>
+                    </label>
+                    <select name="transferReceivingAccountDropdown" id="transferReceivingAccountDropdown" class="form-control"></select>
+                  </div>
+                  <div class="form-group">
+                    <label for="transferWithdrawalAccountDropdown" class="d-flex flex-row align-items-start">
+                      <i class="fas fa-asterisk fa-xs" style="color: #f22626; font-size: 6px;"></i><span class="withdrawalAccount">Withdrawal Account</span>
+                    </label>
+                    <select name="transferWithdrawalAccountDropdown" id="transferWithdrawalAccountDropdown" class="form-control"></select>
+                  </div>
+                  <div class="form-group gd-r1">
+                    <label for="transferNote">Note (max. 255 characters)</label>
+                    <textarea class="form-control" id="transferNote"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary modal.close" data-dismiss="modal" id="closeRecordModalButton">Close</button>
+            <button type="button" class="btn btn-primary dashboard.addRecordModal.addRecord" id="addRecordButton">Add Record</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!--#include virtual="/components/logoutModal.html" -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="errorModalLabel">Validation Errors</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="errorModalBody"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title logout.warning.header" id="logoutModalLabel">Log Out</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body logout.warning">Do you want to log out?</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary logout.cancel" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary dark-blue logout.button" id="logOutButton">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="activityModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="activityModalLabel">Activity Log</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+              <table class="table table-bordered" id="activityLogTable">
+                <thead>
+                <tr>
+                  <th>Page Name</th>
+                  <th>Date</th>
+                </tr>
+                </thead>
+                <tbody id="activityLogTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

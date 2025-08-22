@@ -1,22 +1,24 @@
+const { Chart } = require('chart.js')
+
 const { AnalyticsApi } = require('../api')
 
 class DashboardLineChart {
-    static async renderMonthlyExpensesLineChart(token){
-        const monthlyExpensesLineChart = document.getElementById('monthlyExpensesLineChart').getContext('2d');
-        const {labels, data} = await AnalyticsApi.getUserDashboardExpensesLineChart(token)
+    static async renderMonthlyExpensesLineChart(token) {
+        const monthlyExpensesLineChart = document.getElementById('monthlyExpensesLineChart').getContext('2d')
+        const { labels, data } = await AnalyticsApi.getUserDashboardExpensesLineChart(token)
 
         new Chart(monthlyExpensesLineChart, {
             type: 'line',
             data: {
                 labels,
-                datasets: [{
+                datasets: [ {
                     label: 'Expenses',
                     data,
-                    borderColor: "#567cb3",
-                    backgroundColor: "transparent",
+                    borderColor: '#567cb3',
+                    backgroundColor: 'transparent',
                     fill: true,
                     tension: 0.4
-                }]
+                } ]
             },
             options: {
                 responsive: true,
@@ -44,10 +46,10 @@ class DashboardLineChart {
                     }
                 }
             }
-        });
+        })
     }
 
-    static async init(){
+    static async init() {
         const token = localStorage.getItem('token')
 
         await DashboardLineChart.renderMonthlyExpensesLineChart(token)
