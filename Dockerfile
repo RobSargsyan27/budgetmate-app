@@ -7,8 +7,6 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build:css && npm run dprint:fix
-
 RUN mkdir -p \
     src/vendor/jquery \
     src/vendor/bootstrap \
