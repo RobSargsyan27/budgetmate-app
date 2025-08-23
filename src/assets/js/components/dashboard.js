@@ -347,19 +347,23 @@ class Dashboard {
             DashboardPieChart.init(),
             DashboardLineChart.init(),
             Dashboard.setDashboardUserAccounts(token),
-            Dashboard.setRecordCategories(token),
-            Dashboard.setRecordCategories(token),
-            Dashboard.setUserAccounts(token),
             Dashboard.setDashboardUserAnalytics(token)
         ])
 
-        Dashboard.submitRecordListener(token)
-        Dashboard.submitBudgetListener(token)
-        Dashboard.submitAccountListener(token)
+        if(!Dashboard.listenersBound){
+            Dashboard.submitRecordListener(token)
+            Dashboard.submitBudgetListener(token)
+            Dashboard.submitAccountListener(token)
+            await Dashboard.setRecordCategories(token)
+            await Dashboard.setUserAccounts(token)
+            Dashboard.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog('Dashboard')
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Dashboard.listenersBound = false
 
 module.exports = Dashboard

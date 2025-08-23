@@ -19,7 +19,7 @@ class Budgets {
 
         budgetsContainer.innerHTML += `
           <div class="col-xl-3 col-md-6 mb-4">
-            <a class="text-decoration-none" href="/budget/${budget.id}">
+            <a class="text-decoration-none spa-nav" data-ref="budget" data-id="${budget.id}">
               <div class="card h-100 border-0 shadow-sm rounded-4">
                 <div class="card-body d-flex flex-column justify-content-between p-4">
                   <div class="position-absolute" style="top: 1rem; right: 1rem;">
@@ -87,11 +87,17 @@ class Budgets {
         const token = localStorage.getItem('token')
 
         await Budgets.setBudgets(token)
-        Budgets.setBudgetReportListener(token)
+
+        if(!Budgets.listenersBound){
+            Budgets.setBudgetReportListener(token)
+            Budgets.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog('Budgets')
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Budgets.listenersBound = false
 
 module.exports = Budgets

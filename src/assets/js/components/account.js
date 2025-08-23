@@ -69,12 +69,18 @@ class Account {
         const token = localStorage.getItem('token')
 
         await Account.setAccountDetails(token, accountId)
-        Account.setSubmitAccountListener(token, accountId)
-        Account.setDeleteAccountListener(token, accountId)
+
+        if(!Account.listenersBound) {
+            Account.setSubmitAccountListener(token, accountId)
+            Account.setDeleteAccountListener(token, accountId)
+            Account.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog(`Account ${accountId} details`)
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Account.listenersBound = false
 
 module.exports = Account

@@ -154,12 +154,18 @@ class Profile {
         const user = await UsersApi.getUser(token)
 
         Profile.setFormDetails(user)
-        Profile.setUpdateUserListener(token)
-        Profile.setDeleteUserListener(token)
+
+        if(!Profile.listenersBound){
+            Profile.setUpdateUserListener(token)
+            Profile.setDeleteUserListener(token)
+            Profile.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog('Profile')
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Profile.listenersBound = false
 
 module.exports = Profile

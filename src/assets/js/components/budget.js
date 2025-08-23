@@ -94,12 +94,18 @@ class Budget {
         const budgetId = window.location.pathname.split('/').pop()
 
         await Budget.setBudgetDetails(token, budgetId)
-        Budget.setSubmitBudgetListener(token, budgetId)
-        Budget.setDeleteBudgetListener(token, budgetId)
+
+        if(!Budget.listenersBound){
+            Budget.setSubmitBudgetListener(token, budgetId)
+            Budget.setDeleteBudgetListener(token, budgetId)
+            Budget.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog(`Budget ${budgetId} details`)
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Budget.listenersBound = false
 
 module.exports = Budget

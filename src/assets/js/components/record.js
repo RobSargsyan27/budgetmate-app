@@ -144,7 +144,7 @@ class Record {
                 budgetsAccountContainer.innerHTML += `<div class="col-xl-3 col-md-6 mb-4">
           <div class="card h-100 py-2" style="border-left: 0.25rem solid ${accountColor}">
               <div class="card-body">
-                  <a target="_blank" class="text-decoration-none" href="/account/${account.id}">
+                  <a target="_blank" class="text-decoration-none spa-nav" data-ref="account" data-id="${account.id}">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                           <div class="text-lg font-weight-bold text-uppercase mb-1" style="color: ${accountColor}">${account.name}</div>
@@ -171,12 +171,17 @@ class Record {
         const recordId = window.location.pathname.split('/').pop()
         await Record.setRecordDetails(token, recordId)
 
-        Record.setSubmitRecordListener(token, recordId)
-        Record.setDeleteRecordListener(token, recordId)
+        if(!Record.listenersBound){
+            Record.setSubmitRecordListener(token, recordId)
+            Record.setDeleteRecordListener(token, recordId)
+            Record.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog(`Record ${recordId} details`)
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Record.listenersBound = false
 
 module.exports = Record

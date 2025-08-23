@@ -91,23 +91,29 @@ class Analytics {
 
         await Analytics.setUserOverviewDetails(token, startDate, endDate, options)
 
-        document.getElementById('previousMonthOverview').addEventListener('click', async () => {
-            startDate = new Date(startDate.getFullYear(), startDate.getMonth() - 1)
-            endDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1)
+        if(!Analytics.listenersBound){
+            document.getElementById('previousMonthOverview').addEventListener('click', async () => {
+                startDate = new Date(startDate.getFullYear(), startDate.getMonth() - 1)
+                endDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1)
 
-            await Analytics.setUserMonthOverviewListener(token, startDate, endDate, options)
-        })
+                await Analytics.setUserMonthOverviewListener(token, startDate, endDate, options)
+            })
 
-        document.getElementById('nextMonthOverview').addEventListener('click', async () => {
-            startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1)
-            endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1)
+            document.getElementById('nextMonthOverview').addEventListener('click', async () => {
+                startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1)
+                endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1)
 
-            await Analytics.setUserMonthOverviewListener(token, startDate, endDate, options)
-        })
+                await Analytics.setUserMonthOverviewListener(token, startDate, endDate, options)
+            })
+
+            Analytics.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog('Analytics')
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Analytics.listenersBound = false
 
 module.exports = Analytics

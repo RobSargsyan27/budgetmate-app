@@ -23,18 +23,6 @@ class Records {
     }
 
     /**
-     * @returns void
-     * @description Set row link listeners.
-     */
-    static setRowLinkListeners() {
-        document.querySelectorAll('.clickable-row').forEach(row => {
-            row.addEventListener('click', function() {
-                window.location.href = this.dataset.href
-            })
-        })
-    }
-
-    /**
      * @param {string} token
      * @param {number} currentPage
      * @returns {Promise<void>}
@@ -51,7 +39,7 @@ class Records {
         recordsTableBody.innerHTML = ''
         records.forEach((record) => {
             const paymentTime = new Date(record.paymentTime)
-            recordsTableBody.innerHTML += `<tr class="clickable-row" data-href="/record/${record.id}">
+            recordsTableBody.innerHTML += `<tr class="spa-nav" data-ref="record" data-id="${record.id}">
           <td>${record.amount}</td>
           <td>${record.type}</td>
           <td>${record.category?.name || ''}</td>
@@ -86,7 +74,6 @@ class Records {
                     currentPage = page
                     await Records.renderRecordTable(token, currentPage)
                     Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
-                    Records.setRowLinkListeners()
                 })
             }
             paginationControls.appendChild(li)
@@ -147,33 +134,35 @@ class Records {
         await Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
         await Records.renderRecordTable(token, currentPage)
 
-        const recordsPerPageSelect = document.getElementById('recordsPerPageSelect')
-        recordsPerPageSelect.addEventListener('change', async () => {
-            const recordsPerPage = parseInt(this.value)
-            currentPage = 1
-            const recordsCount = await RecordsApi.countUserRecords(token, Records.getRecordFilters())
-            Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
-            await Records.renderRecordTable(token, currentPage)
-            Records.setRowLinkListeners()
-        })
+        if(!Records.listenersBound){
+            const recordsPerPageSelect = document.getElementById('recordsPerPageSelect')
+            recordsPerPageSelect.addEventListener('change', async () => {
+                const recordsPerPage = parseInt(this.value)
+                currentPage = 1
+                const recordsCount = await RecordsApi.countUserRecords(token, Records.getRecordFilters())
+                Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
+                await Records.renderRecordTable(token, currentPage)
+            })
 
-        document.getElementById('recordsApplyFilters').addEventListener('click', async (event) => {
-            const recordsPerPage = parseInt(document.getElementById('recordsPerPageSelect').value)
-            currentPage = 1
-            const recordsCount = await RecordsApi.countUserRecords(token, Records.getRecordFilters())
-            Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
-            await Records.renderRecordTable(token, currentPage)
-            Records.setRowLinkListeners()
+            document.getElementById('recordsApplyFilters').addEventListener('click', async (event) => {
+                const recordsPerPage = parseInt(document.getElementById('recordsPerPageSelect').value)
+                currentPage = 1
+                const recordsCount = await RecordsApi.countUserRecords(token, Records.getRecordFilters())
+                Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
+                await Records.renderRecordTable(token, currentPage)
 
-            event.target.blur()
-        })
+                event.target.blur()
+            })
 
-        Records.setRowLinkListeners()
-        Records.setGenerateReportListener(token)
+            Records.setGenerateReportListener(token)
+            Records.listenersBound = true
+        }
 
         ActivityLogLib.addActionToActivityLog('Records History')
         ActivityLogLib.setUserActivityLogDetails()
     }
 }
+
+Records.listenersBound = false
 
 module.exports = Records
