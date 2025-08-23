@@ -1,70 +1,64 @@
-import 'jquery/dist/jquery.min.js'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'jquery.easing/jquery.easing.min.js'
-import 'chart.js/auto'
-import 'joi-browser/dist/joi-browser'
+// jQuery (global so plugins can attach)
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+import 'jquery.easing/jquery.easing.min.js';
 
-import '../scss/custom.scss'
-import '@fortawesome/fontawesome-free/css/all.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
 
-import { Account, Analytics, Budget, Budgets, Dashboard, Generic, Profile, Record, Records } from './components'
-import { FetchHtmlLib } from './lib'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../scss/custom.scss';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+import 'chart.js/auto';
+import 'joi-browser/dist/joi-browser';
+
+import { Account, Analytics, Budget, Budgets, Dashboard, Generic, Profile, Record, Records } from './components';
+import { FetchHtmlLib } from './lib';
 
 const componentFns = {
-    accounts: Account.init,
+    account: Account.init,
     analytics: Analytics.init,
     budget: Budget.init,
     budgets: Budgets.init,
     dashboard: Dashboard.init,
     profile: Profile.init,
     record: Record.init,
-    records: Records.init
-}
+    records: Records.init,
+};
 
-const mainContent = document.getElementById('mainContent')
+const mainContent = document.getElementById('mainContent');
 
-/**
- * @returns {Promise<void>}
- * @description Render error page.
- */
 async function renderErrorPage() {
-    mainContent.innerHTML = await FetchHtmlLib.fetch('error')
+    mainContent.innerHTML = await FetchHtmlLib.fetch('error');
 }
 
-/**
- * @param {string} componentName
- * @description Render page.
- */
-async function renderPage(componentName) {
+async function renderPage(componentName, refId) {
     try {
-        mainContent.innerHTML = await FetchHtmlLib.fetch(componentName)
-        await componentFns[componentName]()
+        mainContent.innerHTML = await FetchHtmlLib.fetch(componentName);
+        await componentFns[componentName](refId);
     } catch (error) {
-        console.log(error)
-        await renderErrorPage()
+        console.log(error);
+        await renderErrorPage();
     }
 }
 
-/**
- * @returns void
- * @description Set navigation listeners.
- */
 function setNavigationListeners() {
-    const navigationItems = Array.from(document.getElementsByClassName('spa-nav'))
+    const navigationItems = Array.from(document.getElementsByClassName('spa-nav'));
     navigationItems.forEach(item =>
         item.addEventListener('click', async (event) => {
-            const componentName = event.target.closest('a').dataset.ref
-            await renderPage(componentName)
+            const componentName = event.target.closest('a').dataset.ref;
+            const refId = event.target.closest('a').dataset.id
+            await renderPage(componentName, refId);
         })
-    )
+    );
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    await Generic.init()
+    await Generic.init();
+    await renderPage('dashboard');
 
-    await renderPage('dashboard')
-    setNavigationListeners()
+    setNavigationListeners();
 
-    mainContent.style.display = 'block'
-})
+    mainContent.style.display = 'block';
+});

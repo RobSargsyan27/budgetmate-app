@@ -46,16 +46,12 @@ function getFormFields() {
  * @description Submit form.
  */
 async function submitForm(emailModal, errorModal, errorModalBody) {
-    const userForm = getFormFields()
-    const response = await AuthApi.registerUser(userForm)
-
-    if (response.ok) {
+    try{
+        const userForm = getFormFields()
+        await AuthApi.registerUser(userForm)
         emailModal.show()
-        setTimeout(() => {
-            window.location.href = '/login'
-        }, 1000 * 10)
-    } else {
-        const error = await response.json()
+        setTimeout(() => window.location.href = '/login', 1000 * 10)
+    }catch (error) {
         showError(errorModalBody, errorModal, error.message)
     }
 }
@@ -79,6 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return
         }
 
-        await submitForm(emailModal, errorModal, errorModalBody).catch(error => showError(error))
+        await submitForm(emailModal, errorModal, errorModalBody)
     })
 })

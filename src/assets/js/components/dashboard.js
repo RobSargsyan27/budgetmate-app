@@ -2,6 +2,8 @@ const { ActivityLogLib } = require('../lib')
 const { BudgetsApi, RecordsApi, AccountsApi, AccountRequestsApi, AnalyticsApi, RecordCategoriesApi } = require('../api')
 const { DashboardLineChart, DashboardPieChart } = require('../charts')
 
+const { Modal } = require('bootstrap')
+
 class Dashboard {
     /**
      * @param {string} token
@@ -84,7 +86,7 @@ class Dashboard {
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card h-100 py-2" style="border-left: 0.25rem solid ${accountColor}">
             <div class="card-body">
-                <a class="text-decoration-none" href="/account/${account.id}">
+                <a class="text-decoration-none spa-nav" data-ref="account" data-id="${account.id}">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-lg font-weight-bold text-uppercase mb-1" style="color: ${accountColor}">${account.name}</div>
@@ -154,7 +156,7 @@ class Dashboard {
             }
 
             await Promise.all([ Dashboard.setDashboardUserAccounts(token), Dashboard.setDashboardUserAnalytics(token) ])
-            document.getElementById('closeRecordModalButton').click()
+            Modal.getOrCreateInstance(document.getElementById('addRecordModal')).hide()
         })
     }
 
@@ -268,7 +270,7 @@ class Dashboard {
             nameInput.value = ''
             amountInput.value = ''
             budgetCategoriesCheckboxes.forEach(checkbox => checkbox.checked = false)
-            document.getElementById('closeBudgetModalButton').click()
+            Modal.getOrCreateInstance(document.getElementById('addBudgetModal')).hide()
         })
     }
 
@@ -285,7 +287,7 @@ class Dashboard {
                 : await Dashboard.submitExistingAccountRequest(token)
 
             await Promise.all([ Dashboard.setDashboardUserAccounts(token), Dashboard.setDashboardUserAnalytics(token) ])
-            document.getElementById('closeAccountModalButton').click()
+            Modal.getOrCreateInstance(document.getElementById('addAccountModal')).hide()
         })
     }
 

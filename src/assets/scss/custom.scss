@@ -1827,6 +1827,34 @@ a:focus {
   background: var(--cc-dark-blue);
 }
 
+body.sidebar-toggled .sidebar {
+  width: 4.5rem !important;
+  overflow: hidden;
+}
+
+.sidebar.toggled .nav-item .nav-link span,
+body.sidebar-toggled .sidebar .sidebar-brand .sidebar-brand-text {
+  display: none !important;
+}
+
+body.sidebar-toggled .sidebar .nav-item .nav-link {
+  width: 4.5rem;
+  text-align: center;
+  padding: .75rem .5rem;
+}
+
+.sidebar #sidebarToggle::after {
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  content: "\f104";
+}
+
+.sidebar.toggled #sidebarToggle::after {
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  content: "\f105";
+}
+
 .card .card-header .dropdown {
   line-height: 1;
 }

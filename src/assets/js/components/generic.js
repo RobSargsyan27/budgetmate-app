@@ -1,4 +1,6 @@
 const $ = require('jquery')
+const { Collapse } =  require('bootstrap')
+
 const { AccountRequestsApi, UsersApi } = require('../api')
 const { AuthLib, ActivityLogLib } = require('../lib')
 
@@ -107,6 +109,16 @@ class Generic {
 
     /**
      * @returns void
+     * @description Hide all sidebar collapses.
+     */
+    static hideAllSidebarCollapses() {
+        document.querySelectorAll('.sidebar .collapse').forEach(el => {
+            Collapse.getOrCreateInstance(el, { toggle: false }).hide();
+        });
+    }
+
+    /**
+     * @returns void
      * @description Init sidebar toggle.
      */
     static initSidebarToggle() {
@@ -114,7 +126,7 @@ class Generic {
             $('body').toggleClass('sidebar-toggled')
             $('.sidebar').toggleClass('toggled')
             if ($('.sidebar').hasClass('toggled')) {
-                $('.sidebar .collapse').collapse('hide')
+                Generic.hideAllSidebarCollapses()
             }
         })
     }
@@ -126,13 +138,12 @@ class Generic {
     static handleWindowResize() {
         $(window).resize(function() {
             if ($(window).width() < 768) {
-                $('.sidebar .collapse').collapse('hide')
+                Generic.hideAllSidebarCollapses()
             }
-
             if ($(window).width() < 480 && !$('.sidebar').hasClass('toggled')) {
                 $('body').addClass('sidebar-toggled')
                 $('.sidebar').addClass('toggled')
-                $('.sidebar .collapse').collapse('hide')
+                Generic.hideAllSidebarCollapses()
             }
         })
     }
@@ -144,8 +155,8 @@ class Generic {
     static preventSidebarScrolling() {
         $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
             if ($(window).width() > 768) {
-                var e0 = e.originalEvent,
-                    delta = e0.wheelDelta || -e0.detail
+                const e0 = e.originalEvent
+                const delta = e0.wheelDelta || -e0.detail
                 this.scrollTop += (delta < 0 ? 1 : -1) * 30
                 e.preventDefault()
             }
@@ -158,7 +169,7 @@ class Generic {
      */
     static toggleScrollToTopButton() {
         $(document).on('scroll', function() {
-            var scrollDistance = $(this).scrollTop()
+            const scrollDistance = $(this).scrollTop()
             if (scrollDistance > 100) {
                 $('.scroll-to-top').fadeIn()
             } else {
@@ -173,11 +184,9 @@ class Generic {
      */
     static smoothScroll() {
         $(document).on('click', 'a.scroll-to-top', function(e) {
-            var $anchor = $(this)
+            const $anchor = $(this)
             $('html, body').stop().animate(
-                {
-                    scrollTop: ($($anchor.attr('href')).offset().top)
-                },
+                { scrollTop: ($($anchor.attr('href')).offset().top) },
                 1000,
                 'easeInOutExpo'
             )
