@@ -17,42 +17,34 @@ class Budgets {
         const budgetCurrentBalance = budgetsCurrentBalance.find((item) => budget.id === item.id).currentBalance
         const currentProgress = budgetCurrentBalance > 0 ? budgetCurrentBalance * 100 / budget.amount : 0
 
-        budgetsContainer.innerHTML += `<div class="col-xl-3 col-md-6 mb-4">
-          <a class="text-decoration-none" href="/budget/${budget.id}">
-            <div class="card h-100 py-2 position-relative">
-                <div class="card-body d-flex flex-column justify-content-between">
-                    <div class="position-absolute mt-3 me-3" style="top: 1rem; right: 1rem">
-                        <i class="fas fa-coins fa-2x text-gray-400"></i>
+        budgetsContainer.innerHTML += `
+          <div class="col-xl-3 col-md-6 mb-4">
+            <a class="text-decoration-none" href="/budget/${budget.id}">
+              <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-body d-flex flex-column justify-content-between p-4">
+                  <div class="position-absolute" style="top: 1rem; right: 1rem;">
+                    <i class="fas fa-coins fa-lg text-gray-400"></i>
+                  </div>
+                  <div>
+                    <h6 class="text-uppercase fw-bold mb-1 text-primary">${budget.name}</h6>
+                    <div class="h5 fw-bold text-dark mb-2">${budget.amount}</div>
+                    <div class="d-flex flex-wrap gap-2 mt-2">${categoriesHTML}</div>
+                  </div>
+                  <div class="mt-4">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                      <span class="fw-bold text-dark">${currentProgress.toFixed(2)}%</span>
                     </div>
-                    <div class="d-flex flex-row">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-uppercase mb-1">${budget.name}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${budget.amount}</div>
-                                <div class="mt-2 d-flex flex-wrap fl-gap-1">${categoriesHTML}</div>
-                            </div>
-                        </div>
+                    <div class="progress progress-sm rounded-pill" style="height: 0.6rem;">
+                      <div class="progress-bar bg-info rounded-pill" role="progressbar"
+                           style="width: ${currentProgress.toFixed(2)}%" 
+                           aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="mt-5">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-            currentProgress.toFixed(2)
-        }%</div>
-                            </div>
-                            <div class="col">
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-info" role="progressbar" 
-                                         style="width: ${currentProgress.toFixed(2)}%" aria-valuemin="0" 
-                                         aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </div>
-          </a>
-      </div>`
+              </div>
+            </a>
+          </div>
+        `;
     }
 
     /**
