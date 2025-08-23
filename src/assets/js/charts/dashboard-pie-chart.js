@@ -1,5 +1,4 @@
-const { Chart } = require('chart.js')
-
+const Chart = require('chart.js/auto')
 const { AnalyticsApi } = require('../api')
 
 class DashboardPieChart {
@@ -12,7 +11,7 @@ class DashboardPieChart {
             type: 'pie',
             data: {
                 labels,
-                datasets: [ {
+                datasets: [{
                     data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.8)',
@@ -29,7 +28,7 @@ class DashboardPieChart {
                         'rgba(153, 102, 255, 1)'
                     ],
                     borderWidth: 1
-                } ]
+                }]
             },
             options: {
                 responsive: true,

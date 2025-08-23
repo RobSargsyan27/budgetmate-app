@@ -1,5 +1,4 @@
-const { Chart } = require('chart.js')
-
+const Chart = require('chart.js/auto')
 const { AnalyticsApi } = require('../api')
 
 class DashboardLineChart {
@@ -23,27 +22,11 @@ class DashboardLineChart {
             options: {
                 responsive: true,
                 scales: {
-                    x: {
-                        ticks: {
-                            display: true
-                        },
-                        title: {
-                            display: true
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            display: true
-                        },
-                        title: {
-                            display: true
-                        }
-                    }
+                    x: { ticks: { display: true }, title: { display: true } },
+                    y: { ticks: { display: true }, title: { display: true } }
                 },
                 plugins: {
-                    legend: {
-                        display: false
-                    }
+                    legend: { display: false }
                 }
             }
         })

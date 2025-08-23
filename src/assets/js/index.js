@@ -1,11 +1,12 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'jquery.easing/jquery.easing.min.js'
 import 'chart.js/auto'
 import 'joi-browser/dist/joi-browser'
 
 import '../css/theme.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { Account, Analytics, Budget, Budgets, Dashboard, Generic, Profile, Record, Records } from './components'
 import { FetchHtmlLib } from './lib'
@@ -53,7 +54,7 @@ function setNavigationListeners() {
     const navigationItems = Array.from(document.getElementsByClassName('spa-nav'))
     navigationItems.forEach(item =>
         item.addEventListener('click', async (event) => {
-            const componentName = event.target.dataset.ref
+            const componentName = event.target.closest('a').dataset.ref
             await renderPage(componentName)
         })
     )
