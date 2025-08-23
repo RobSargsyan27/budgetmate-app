@@ -4,7 +4,7 @@ import 'jquery.easing/jquery.easing.min.js'
 import 'chart.js/auto'
 import 'joi-browser/dist/joi-browser'
 
-import '../css/theme.css'
+import '../scss/custom.scss'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
