@@ -406,14 +406,14 @@ textarea {
 
 .btn-primary:hover {
   color: $white;
-  background-color: var(--cc-dark-blue);
+  background-color: var($cc-dark-blue);
   border-color: #2653d4;
 }
 
 .btn-primary:focus {
   color: $white;
-  background-color: var(--cc-dark-blue);
-  border-color: var(--cc-dark-gray);
+  background-color: var($cc-dark-blue);
+  border-color: var($cc-dark-gray);
   box-shadow: 0 0 0 .2rem rgba(105, 136, 228, .5);
 }
 
@@ -1812,7 +1812,7 @@ a:focus {
 }
 
 .sidebar-dark .sidebar-brand {
-  color: var(--cc-dark-blue);
+  color: var($cc-dark-blue);
 }
 
 .sidebar-dark hr.sidebar-divider {
@@ -1820,11 +1820,11 @@ a:focus {
 }
 
 .sidebar-dark .nav-item .nav-link {
-  color: var(--cc-dark-blue);
+  color: var($cc-dark-blue);
 }
 
 .sidebar-dark #sidebarToggle:hover {
-  background: var(--cc-dark-blue);
+  background: var($cc-dark-blue);
 }
 
 body.sidebar-toggled .sidebar {

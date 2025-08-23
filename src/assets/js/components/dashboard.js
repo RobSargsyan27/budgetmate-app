@@ -148,6 +148,7 @@ class Dashboard {
                     await Dashboard.submitExpenseRecord(token)
                     break
                 case 'Income':
+                    console.log('income')
                     await Dashboard.submitIncomeRecord(token)
                     break
                 case 'Transfer':

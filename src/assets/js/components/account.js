@@ -67,7 +67,6 @@ class Account {
      */
     static async init(accountId) {
         const token = localStorage.getItem('token')
-        window.history.pushState({}, "", `/accounts/${accountId}`);
 
         await Account.setAccountDetails(token, accountId)
         Account.setSubmitAccountListener(token, accountId)

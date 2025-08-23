@@ -1,18 +1,26 @@
 <div class="container-fluid" id="recordsHistoryContainer">
-  <h1 class="h3 mb-4 text-gray-800 recordsHistory">Records History</h1>
+  <h1 class="h3 mb-4 text-gray-800 recordsHistory fw-bold">Records History</h1>
 
-  <div class="card mb-4" id="recordsHistoryTableCard">
-    <div class="card-body">
-      <div class="row d-flex justify-content-between mb-4 ml-1 mr-1">
-        <button class="btn btn-primary generateReport" id="recordReportButton">Generate Report</button>
-        <button class="btn btn-primary recordHistory.applyFilters" id="recordsApplyFilters">Apply Filters</button>
+  <div class="card border-0 shadow-sm rounded-4 mb-4" id="recordsHistoryTableCard">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-primary px-4 generateReport d-flex align-items-center gap-2" id="recordReportButton">
+          <i class="fas fa-file-download"></i>
+          <span>Generate Report</span>
+        </button>
+        <button class="btn btn-primary px-4 recordHistory.applyFilters d-flex align-items-center gap-2" id="recordsApplyFilters">
+          <i class="fas fa-filter"></i>
+          <span>Apply Filters</span>
+        </button>
       </div>
-      <hr>
+
+      <hr class="mb-4">
+
       <div class="table-responsive">
-        <div class="gd-1 mb-2">
-          <div class="d-flex align-items-center mb-3">
-            <label for="recordsPerPageSelect" class="form-label mr-3 recordsPerPage">Records Per Page</label>
-            <select id="recordsPerPageSelect" class="form-control form-select-sm" style="width: auto;">
+        <div class="row g-3 mb-3">
+          <div class="col-md-auto d-flex align-items-center gap-2">
+            <label for="recordsPerPageSelect" class="form-label recordsPerPage mb-0">Per Page</label>
+            <select id="recordsPerPageSelect" class="form-select form-select-sm">
               <option value="5">5</option>
               <option value="10" selected>10</option>
               <option value="25">25</option>
@@ -20,9 +28,9 @@
             </select>
           </div>
 
-          <div class="d-flex align-items-center mb-3">
-            <label for="recordTypeSelect" class="form-label mr-3 record.category">Category</label>
-            <select id="recordTypeSelect" class="form-control form-select-sm" style="width: auto;">
+          <div class="col-md-auto d-flex align-items-center gap-2">
+            <label for="recordTypeSelect" class="form-label record.category mb-0">Category</label>
+            <select id="recordTypeSelect" class="form-select form-select-sm">
               <option class="recordHistory.all" value="all">All</option>
               <option class="recordHistory.income" value="income">Income</option>
               <option class="recordHistory.expense" value="expense">Expense</option>
@@ -30,23 +38,23 @@
             </select>
           </div>
 
-          <div class="d-flex align-items-center mb-3">
-            <label for="timestampStartFilter" class="form-label mr-3 timestamp">Date</label>
-            <input type="date" id="timestampStartFilter" class="form-control form-select-sm" style="width: auto;">
-            <span class="ml-1 mr-1">-</span>
-            <input type="date" id="timestampEndFilter" class="form-control form-select-sm" style="width: auto;">
+          <div class="col-md-auto d-flex align-items-center gap-2">
+            <label for="timestampStartFilter" class="form-label timestamp mb-0">Date</label>
+            <input type="date" id="timestampStartFilter" class="form-control form-control-sm">
+            <span>-</span>
+            <input type="date" id="timestampEndFilter" class="form-control form-control-sm">
           </div>
 
-          <div class="d-flex align-items-center mb-3">
-            <label for="amountStartFilter" class="form-label mr-3 amount">Amount</label>
-            <input type="number" id="amountStartFilter" class="form-control form-select-sm" style="width: auto;">
-            <span class="ml-1 mr-1">-</span>
-            <input type="number" id="amountEndFilter" class="form-control form-select-sm" style="width: auto;">
+          <div class="col-md-auto d-flex align-items-center gap-2">
+            <label for="amountStartFilter" class="form-label amount mb-0">Amount</label>
+            <input type="number" id="amountStartFilter" class="form-control form-control-sm" placeholder="Min">
+            <span>-</span>
+            <input type="number" id="amountEndFilter" class="form-control form-control-sm" placeholder="Max">
           </div>
         </div>
 
-        <table class="table table-bordered" id="recordsHistoryTable" width="100%" cellspacing="0">
-          <thead>
+        <table class="table table-hover table-striped align-middle" id="recordsHistoryTable">
+          <thead class="table-light">
           <tr>
             <th class="amount">Amount</th>
             <th class="record.type">Record Type</th>
@@ -60,9 +68,9 @@
           <tbody id="recordsHistoryTableBody"></tbody>
         </table>
 
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mt-3">
           <nav>
-            <ul class="pagination pagination-sm" id="paginationControls"></ul>
+            <ul class="pagination pagination-sm mb-0" id="paginationControls"></ul>
           </nav>
         </div>
       </div>

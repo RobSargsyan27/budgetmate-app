@@ -1,4 +1,3 @@
-// jQuery (global so plugins can attach)
 import $ from 'jquery';
 window.$ = window.jQuery = $;
 import 'jquery.easing/jquery.easing.min.js';
@@ -7,8 +6,8 @@ import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../scss/custom.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import '../scss/custom.scss';
 
 import 'chart.js/auto';
 import 'joi-browser/dist/joi-browser';
