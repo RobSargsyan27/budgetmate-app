@@ -89,9 +89,8 @@ class Budget {
      * @returns {Promise<void>}
      * @description Init page.
      */
-    static async init() {
+    static async init(budgetId) {
         const token = localStorage.getItem('token')
-        const budgetId = window.location.pathname.split('/').pop()
 
         await Budget.setBudgetDetails(token, budgetId)
 

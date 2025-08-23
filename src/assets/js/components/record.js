@@ -165,10 +165,8 @@ class Record {
      * @returns {Promise<void>}
      * @description Init page.
      */
-    static async init() {
+    static async init(recordId) {
         const token = localStorage.getItem('token')
-
-        const recordId = window.location.pathname.split('/').pop()
         await Record.setRecordDetails(token, recordId)
 
         if(!Record.listenersBound){
