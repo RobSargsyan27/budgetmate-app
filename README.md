@@ -552,8 +552,7 @@ There are two additional dependencies that are added one of which is the `jquery
 | Week | Requirement | Status |
 | --- | --- | --- |
 | 1 | Update your application so that it connects to a standalone PostgreSQL database running in a Docker container. The configuration of your docker service should be included in the root of your git repository in the form of a **`docker-compose.yml`** file. | ✅ |
-| 1 | Your application should already be configured with a code-first flow (from 
-Programming 3). Verify that all of your database artifacts (tables, etc.) are created successfully when your app is launched. You may still have a leftover `schema.sql` file in your repository. If so, remove this file and, once again, verify that everything is working. | ✅ |
+| 1 | Your application should already be configured with a code-first flow (from Programming 3). Verify that all of your database artifacts (tables, etc.) are created successfully when your app is launched. You may still have a leftover `schema.sql` file in your repository. If so, remove this file and, once again, verify that everything is working. | ✅ |
 | 1 | Rewrite your data seeding so that data is seeded from an SQL file instead of your current Java routine. Remove any Java code related to data seeding. | ✅ |
 | 1 | Refactor your many-to-many association(s) per the instructions in the course material. | ✅ |
 | 1 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 1 required documentation. | ✅ |
