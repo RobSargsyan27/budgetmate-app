@@ -567,6 +567,8 @@ For API integration test check out: `UserControllerTest`
 
 For Role verification test check out: `AnalyticsControllerTest`
 
+Here is the [link](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/artifacts) to recent successfully run jobs artifacts.
+
 Code coverage screenshot.
 
 ![Screenshot_4](./doc/img/week8-1.png)
@@ -629,10 +631,18 @@ There are two additional dependencies that are added one of which is the `jquery
 | 6 | You write at least two tests for the repository layer. | ✅ |
 | 6 | You write tests for at least two methods of the service layer. | ✅ |
 | 6 |  Testing a single method will probably require you to write a couple of testing methods. | ✅ |
+| 6 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 6 required documentation. | ✅ |
 | 8 | You write integration tests for at least two methods of the REST API of the presentation layer. | ✅ |
 | 8 | You write integration tests for at least two methods of the MVC part of the presentation layer. | ⚠️ |
 | 8 | In addition to the tests listed above, implement tests verifying all role requirements (authorization) for the following authorization requirement mentioned in the Project description for security: "Ensure that updating and deleting records is only allowed by the individual user associated with that specific record and the administrator.". | ✅ |
+| 8 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 8 required documentation. | ✅ |
+| 10 | Create unit tests with mocking for at least one web API endpoint. Ensure that your tests for this endpoint are complete (= not just the happy path) and meaningful. You should end up with multiple tests for this single endpoint. | ✅ |
+| 10 | Create unit tests with mocking for at least two methods of your business layer. Ensure that your tests are complete and meaningful. You should end up with multiple test methods for each service method. | ✅ |
 | 10 | Ensure that at least one of your tests uses 'verify' to ensure certain methods are called with specific arguments. | ✅ |
+| 10 | Add a CI pipeline to your project that triggers automatically when changes are pushed. | ✅ |
+| 10 | Ensure that a 'postgres' service is enabled and that your Spring tests connect to this service while running inside the pipeline. | ✅ |
+| 10 | Ensure that a JUnit test report is produced during the test stage of your pipeline. | ✅ |
+| 10 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 10 required documentation. |  |
 | 11 | Set up a separate project using npm, webpack, ESLint, and dprint. | ✅ |
 | 11 | All styling should be done using Sass. Use at least two features from the SCSS syntax. Write idiomatic SCSS code. | ✅ |
 | 11 | Add Bootstrap to your application and use Bootstrap components and layout features where possible. | ✅ |
