@@ -27,7 +27,7 @@ class RecordsApi {
      * @description Count user records.
      */
     static async countUserRecords( payload) {
-        const count = await fetch(`${RecordsApi.BASE_URL}/count`, {
+        const response = await fetch(`${RecordsApi.BASE_URL}/count`, {
             method: 'POST',
             credentials: "include",
             headers: {
@@ -38,7 +38,8 @@ class RecordsApi {
             body: JSON.stringify(payload)
         })
 
-        return Number.parseInt(count)
+        const text = await response.text()
+        return Number.parseInt(text, 10)
     }
 
     /**

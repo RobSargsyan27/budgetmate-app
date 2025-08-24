@@ -102,6 +102,25 @@ class AnalyticsApi {
 
         return overview.json()
     }
+
+    /**
+     * @returns {Promise<Number>}
+     * @description Get users count.
+     */
+    static async getUserCount() {
+        const response = await fetch(`${AnalyticsApi.BASE_URL}/overview/users`,
+            {
+                method: 'GET',
+                credentials: "include",
+                headers: {
+                    Accept: 'application/json',
+                    "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
+                }
+            }
+        )
+        const text = await response.text();
+        return Number.parseInt(text, 10)
+    }
 }
 
 AnalyticsApi.BASE_URL = 'http://app.budgetmate.com/api/v3/analytics'

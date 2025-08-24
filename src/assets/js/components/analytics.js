@@ -1,5 +1,5 @@
 const { ActivityLogLib } = require('../lib')
-const { AnalyticsApi } = require('../api')
+const { AnalyticsApi, UsersApi } = require('../api')
 const { AnalyticsEarningsLineChart, AnalyticsExpensesLineChart } = require('../charts')
 
 class Analytics {
@@ -67,6 +67,32 @@ class Analytics {
 
     /**
      * @returns {Promise<void>}
+     * @description Init admin dashboard.
+     */
+    static async initAdminDashboard(){
+        const user = await UsersApi.getUser()
+        if(user.role !== 'ADMIN'){
+            return
+        }
+
+        const count = await AnalyticsApi.getUserCount()
+
+        document.getElementById('adminData').innerHTML = `
+            <div class="col-xl-5 col-lg-6">
+                <div class="card shadow-sm rounded-4 border-0 mb-4">
+                    <div class="card-header bg-light border-0 py-3 text-center rounded-top-4">
+                        <h6 class="m-0 font-weight-bold dark-blue analytics.cashFlow">Users Count</h6>
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center">
+                        <i class="fas fa-users fa-2x text-gray-300 mb-2"></i>
+                        <div class="h5 mb-0 font-weight-bold">${count}</div>
+                    </div>
+                </div>
+            </div>`
+    }
+
+    /**
+     * @returns {Promise<void>}
      * @description Init page.
      */
     static async init() {
@@ -96,6 +122,8 @@ class Analytics {
 
             Analytics.listenersBound = true
         }
+
+        await Analytics.initAdminDashboard()
 
         ActivityLogLib.addActionToActivityLog('Analytics')
         ActivityLogLib.setUserActivityLogDetails()
