@@ -91,7 +91,7 @@ You access the main application through `login` button on the top navbar of the 
 
 ---
 
-# Week 2 & 3
+# Weeks 2 & 3
 
 ## Available Endpoints (See More in [OpenAPI](http://localhost:80/swagger-ui/index.html))
 
@@ -531,7 +531,7 @@ Authorization: Bearer {{token}}
 
 ---
 
-# Week 4 & 5
+# Weeks 4 & 5
 
 List of users and their credentials:
 
@@ -554,6 +554,14 @@ The web-app itself required authentication. Here is the [link](http://app.budget
 Due to the business logic of the application and the nature of it, it won’t make sense to give admins access to the users’ data such as records, budgets, etc. Neither is will make sense to give analytics about users’ data.  That’s why it was decided to support simple dashboard and profile pages where admins can see the current number of the users and can change their profile details. 
 
 The admin can neither access nor update users’ related data but their can see high-level analytics about the application data in their respective dashboard. 
+
+---
+
+# Weeks 6 & 8 & 10
+
+The only spring profile that I have added is the `test`  in order to isolate entities testing from `prod`  env. data.
+
+In order to execute the test just run `./gradlew test`  and you will get a logs for each test.
 
 ---
 
@@ -609,6 +617,13 @@ There are two additional dependencies that are added one of which is the `jquery
 | 5 | The user should be implemented as a persisted entity with at least one association with another domain entity | ✅ |
 | 5 | Protect your web application against CSRF. | ✅ |
 | 5 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 5 required documentation. | ✅ |
+| 6 | Use Spring profiles to ensure that your existing seeding routine doesn't interfere with your tests or the other way around. Your tests should run consistently and not interfere with "production" data (or even "development" data). | ✅ |
+| 6 | You write at least two tests for the repository layer. | ✅ |
+| 6 | You write tests for at least two methods of the service layer. | ✅ |
+| 6 |  Testing a single method will probably require you to write a couple of testing methods. | ✅ |
+| 8 | You write integration tests for at least two methods of the REST API of the presentation layer. | ✅ |
+| 8 | You write integration tests for at least two methods of the MVC part of the presentation layer. | ⚠️ |
+| 10 | Ensure that at least one of your tests uses 'verify' to ensure certain methods are called with specific arguments. | ✅ |
 | 11 | Set up a separate project using npm, webpack, ESLint, and dprint. | ✅ |
 | 11 | All styling should be done using Sass. Use at least two features from the SCSS syntax. Write idiomatic SCSS code. | ✅ |
 | 11 | Add Bootstrap to your application and use Bootstrap components and layout features where possible. | ✅ |
@@ -620,7 +635,7 @@ There are two additional dependencies that are added one of which is the `jquery
 | 11 | Implement a new Web API endpoint (REST) in your Spring Boot backend to create a new record, that you cannot yet add through your REST API. | ✅ |
 | 11 | Implement a form in your Client project to add a record. Using a fetch call, you should call the backend and process the response. | ✅ |
 | 11 | In your backend, disable CSRF only for this endpoint. Add a comment to clarify that this is for the separate Client project. | ✅ |
-| 11 | Enable CORS and only allow the origin that corresponds to your Client application.  | ⚠️ |
+| 11 | Enable CORS and only allow the origin that corresponds to your Client application.  | ✅ |
 | 12 | Set up your embedded frontend project using npm and webpack. Follow all guidelines listed in the 13-step process. | ❌ |
 | 12 | Migrate some of your stylings from CSS to SCSS syntax. Use at least two features from the SCSS syntax. Don't just rename your CSS files, but write idiomatic SCSS code. | ✅ |
 | 12 | Customize Bootstrap using Sass. | ✅ |
