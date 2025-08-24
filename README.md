@@ -563,6 +563,14 @@ The only spring profile that I have added is the `test`  in order to isolate ent
 
 In order to execute the test just run `./gradlew test`  and you will get a logs for each test.
 
+For API integration test check out: `UserControllerTest` 
+
+For Role verification test check out: `AnalyticsControllerTest`
+
+Code coverage screenshot.
+
+![Screenshot_4](./doc/img/week8-1.png)
+
 ---
 
 # Week 12
@@ -623,6 +631,7 @@ There are two additional dependencies that are added one of which is the `jquery
 | 6 |  Testing a single method will probably require you to write a couple of testing methods. | ✅ |
 | 8 | You write integration tests for at least two methods of the REST API of the presentation layer. | ✅ |
 | 8 | You write integration tests for at least two methods of the MVC part of the presentation layer. | ⚠️ |
+| 8 | In addition to the tests listed above, implement tests verifying all role requirements (authorization) for the following authorization requirement mentioned in the Project description for security: "Ensure that updating and deleting records is only allowed by the individual user associated with that specific record and the administrator.". | ✅ |
 | 10 | Ensure that at least one of your tests uses 'verify' to ensure certain methods are called with specific arguments. | ✅ |
 | 11 | Set up a separate project using npm, webpack, ESLint, and dprint. | ✅ |
 | 11 | All styling should be done using Sass. Use at least two features from the SCSS syntax. Write idiomatic SCSS code. | ✅ |
