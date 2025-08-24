@@ -30,15 +30,11 @@ function setLoginFormListener(loginForm, message) {
         const password = document.getElementById('inputPassword').value
 
         try {
-            const response = await AuthApi.loginUser({email, password})
-            const { token } = response
+            await AuthApi.loginUser({ email, password })
 
-            if (token) {
-                const activity = {page: 'User logged in.', date: new Date()}
-                localStorage.setItem('token', token)
-                sessionStorage.setItem('activityLog', JSON.stringify([activity]))
-                window.location.href = '/dashboard'
-            }
+            const activity = {page: 'User logged in.', date: new Date()}
+            sessionStorage.setItem('activityLog', JSON.stringify([activity]))
+            window.location.href = '/dashboard'
         } catch (error) {
             showMessage(message, 'An error occurred. Please try again later.', 'alert-danger', 'red')
         }

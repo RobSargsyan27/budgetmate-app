@@ -4,19 +4,14 @@ const { AnalyticsEarningsLineChart, AnalyticsExpensesLineChart } = require('../c
 
 class Analytics {
     /**
-     * @param {string} token
      * @param {Date} startDate
      * @param {Date} endDate
      * @param {Object} dateOptions
      * @returns {Promise<void>}
      * @description Set user overview details.
      */
-    static async setUserOverviewDetails(token, startDate, endDate, dateOptions) {
-        const { monthlyExpenses, monthlyEarnings } = await AnalyticsApi.getUserRecordsOverview(
-            token,
-            startDate,
-            endDate
-        )
+    static async setUserOverviewDetails(startDate, endDate, dateOptions) {
+        const { monthlyExpenses, monthlyEarnings } = await AnalyticsApi.getUserRecordsOverview(startDate, endDate)
 
         const expenseOverview = document.getElementById('expenseOverview')
         const earningsOverview = document.getElementById('earningsOverview')
@@ -41,19 +36,14 @@ class Analytics {
     }
 
     /**
-     * @param {string} token
      * @param {Date} startDate
      * @param {Date} endDate
      * @param {Object} dateOptions
      * @returns {Promise<void>}
      * @description Set user monthly overview listener.
      */
-    static async setUserMonthOverviewListener(token, startDate, endDate, dateOptions) {
-        const { monthlyExpenses, monthlyEarnings } = await AnalyticsApi.getUserRecordsOverview(
-            token,
-            startDate,
-            endDate
-        )
+    static async setUserMonthOverviewListener(startDate, endDate, dateOptions) {
+        const { monthlyExpenses, monthlyEarnings } = await AnalyticsApi.getUserRecordsOverview(startDate, endDate)
 
         const expenseOverview = document.getElementById('expenseOverview')
         const earningsOverview = document.getElementById('earningsOverview')
@@ -83,27 +73,25 @@ class Analytics {
         await AnalyticsEarningsLineChart.init()
         await AnalyticsExpensesLineChart.init()
 
-        const token = localStorage.getItem('token')
-
         const options = { year: 'numeric', month: 'short' }
         let startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1, 0, 0, 0, 0)
         let endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0, 0)
 
-        await Analytics.setUserOverviewDetails(token, startDate, endDate, options)
+        await Analytics.setUserOverviewDetails(startDate, endDate, options)
 
         if(!Analytics.listenersBound){
             document.getElementById('previousMonthOverview').addEventListener('click', async () => {
                 startDate = new Date(startDate.getFullYear(), startDate.getMonth() - 1)
                 endDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1)
 
-                await Analytics.setUserMonthOverviewListener(token, startDate, endDate, options)
+                await Analytics.setUserMonthOverviewListener(startDate, endDate, options)
             })
 
             document.getElementById('nextMonthOverview').addEventListener('click', async () => {
                 startDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1)
                 endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1)
 
-                await Analytics.setUserMonthOverviewListener(token, startDate, endDate, options)
+                await Analytics.setUserMonthOverviewListener(startDate, endDate, options)
             })
 
             Analytics.listenersBound = true

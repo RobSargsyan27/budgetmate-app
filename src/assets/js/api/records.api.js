@@ -1,17 +1,19 @@
+const { CookieLib } = require('../lib')
+
 class RecordsApi {
     /**
-     * @param {string} token
      * @param {Object} payload
      * @returns {Promise<Array<Object>>}
      * @description Search user records.
      */
-    static async searchUserRecords(token, payload) {
+    static async searchUserRecords( payload) {
         const records = await fetch(`${RecordsApi.BASE_URL}/search`, {
             method: 'POST',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -20,18 +22,18 @@ class RecordsApi {
     }
 
     /**
-     * @param {string} token
      * @param {Object} payload
      * @returns {Promise<number>}
      * @description Count user records.
      */
-    static async countUserRecords(token, payload) {
+    static async countUserRecords( payload) {
         const count = await fetch(`${RecordsApi.BASE_URL}/count`, {
             method: 'POST',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -40,18 +42,18 @@ class RecordsApi {
     }
 
     /**
-     * @param {string} token
      * @param {Object} payload
      * @returns {Promise<Blob>}
      * @description Get user records report.
      */
-    static async getUserRecordsReport(token, payload) {
+    static async getUserRecordsReport( payload) {
         const records = await fetch(`${RecordsApi.BASE_URL}/report`, {
             method: 'POST',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -60,16 +62,16 @@ class RecordsApi {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<Array<Object>>}
      * @description Get user records.
      */
-    static async getUserRecords(token) {
+    static async getUserRecords() {
         const records = await fetch(RecordsApi.BASE_URL, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -77,18 +79,18 @@ class RecordsApi {
     }
 
     /**
-     * @param {string} token
      * @param {Object} payload
      * @returns {Promise<Object>}
      * @description Add user record.
      */
-    static async addUserRecord(token, payload) {
+    static async addUserRecord( payload) {
         const record = await fetch(RecordsApi.BASE_URL, {
             method: 'POST',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -97,17 +99,17 @@ class RecordsApi {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {Promise<Object>}
      * @description Get user record.
      */
-    static async getUserRecord(token, id) {
+    static async getUserRecord( id) {
         const record = await fetch(`${RecordsApi.BASE_URL}/${id}`, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -115,19 +117,19 @@ class RecordsApi {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @param {Object} payload
      * @returns {Promise<Object>}
      * @description Update user record.
      */
-    static async updateUserRecord(token, id, payload) {
+    static async updateUserRecord( id, payload) {
         const record = await fetch(`${RecordsApi.BASE_URL}/${id}`, {
             method: 'PATCH',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -136,17 +138,17 @@ class RecordsApi {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {Promise<void>}
      * @description Delete user record.
      */
-    static async deleteUserRecord(token, id) {
+    static async deleteUserRecord( id) {
         await fetch(`${RecordsApi.BASE_URL}/${id}`, {
             method: 'DELETE',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
     }

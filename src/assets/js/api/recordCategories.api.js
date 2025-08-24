@@ -1,15 +1,17 @@
+const { CookieLib } = require('../lib')
+
 class RecordCategoriesApi {
     /**
-     * @param {string} token
      * @returns {Promise<Array<Object>>}
      * @description Get record categories.
      */
-    static async getRecordCategories(token) {
+    static async getRecordCategories() {
         const recordCategories = await fetch(RecordCategoriesApi.BASE_URL, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 

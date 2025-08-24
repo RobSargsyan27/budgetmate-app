@@ -3,13 +3,12 @@ const { ActivityLogLib } = require('../lib')
 
 class Account {
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {Promise<void>}
      * @description Set account details.
      */
-    static async setAccountDetails(token, id) {
-        const account = await AccountsApi.getUserAccount(token, id)
+    static async setAccountDetails(id) {
+        const account = await AccountsApi.getUserAccount(id)
 
         const accountCard = document.getElementById('accountCard')
         const accountName = document.getElementById('accountName')
@@ -29,11 +28,10 @@ class Account {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @description Set submit account listener.
      */
-    static setSubmitAccountListener(token, id) {
+    static setSubmitAccountListener(id) {
         document.getElementById('updateAccountForm').addEventListener('submit', async (event) => {
             event.preventDefault()
 
@@ -43,20 +41,19 @@ class Account {
             const type = document.getElementById('updateAccountType').value
             const avatarColor = document.getElementById('updateAccountAvatarColor').value
 
-            await AccountsApi.updateUserAccount(token, id, { name, currentBalance, type, avatarColor })
-            await Account.setAccountDetails(token, id)
+            await AccountsApi.updateUserAccount( id, { name, currentBalance, type, avatarColor })
+            await Account.setAccountDetails(id)
             submitButton.blur()
         })
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @description Set delete account listener.
      */
-    static setDeleteAccountListener(token, id) {
+    static setDeleteAccountListener(id) {
         document.getElementById('deleteAccountButton').addEventListener('click', async () => {
-            await AccountsApi.deleteUserAccount(token, id)
+            await AccountsApi.deleteUserAccount( id)
             window.location.href = '/dashboard'
         })
     }
@@ -66,13 +63,12 @@ class Account {
      * @description Init page.
      */
     static async init(accountId) {
-        const token = localStorage.getItem('token')
 
-        await Account.setAccountDetails(token, accountId)
+        await Account.setAccountDetails(accountId)
 
         if(!Account.listenersBound) {
-            Account.setSubmitAccountListener(token, accountId)
-            Account.setDeleteAccountListener(token, accountId)
+            Account.setSubmitAccountListener(accountId)
+            Account.setDeleteAccountListener(accountId)
             Account.listenersBound = true
         }
 

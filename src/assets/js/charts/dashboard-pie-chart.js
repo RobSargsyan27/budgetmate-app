@@ -2,10 +2,10 @@ const Chart = require('chart.js/auto')
 const { AnalyticsApi } = require('../api')
 
 class DashboardPieChart {
-    static async renderCategoryPieChart(token) {
+    static async renderCategoryPieChart() {
         const expensesTopCategoriesPieChart = document.getElementById('expensesTopCategoriesPieChart')
         const expensesTopCategoriesPieChartContext = expensesTopCategoriesPieChart.getContext('2d')
-        const { labels, data } = await AnalyticsApi.getUserDashboardCategoryPieChart(token)
+        const { labels, data } = await AnalyticsApi.getUserDashboardCategoryPieChart()
 
         new Chart(expensesTopCategoriesPieChartContext, {
             type: 'pie',
@@ -55,9 +55,7 @@ class DashboardPieChart {
     }
 
     static async init() {
-        const token = localStorage.getItem('token')
-
-        await DashboardPieChart.renderCategoryPieChart(token)
+        await DashboardPieChart.renderCategoryPieChart()
     }
 }
 

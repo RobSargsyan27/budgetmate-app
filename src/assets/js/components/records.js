@@ -23,18 +23,17 @@ class Records {
     }
 
     /**
-     * @param {string} token
      * @param {number} currentPage
      * @returns {Promise<void>}
      * @description Render records table.
      */
-    static async renderRecordTable(token, currentPage) {
+    static async renderRecordTable( currentPage) {
         const limit = document.getElementById('recordsPerPageSelect').value
         const offset = (currentPage - 1) * parseInt(limit)
         const recordsTableBody = document.getElementById('recordsHistoryTableBody')
 
         const payload = { ...Records.getRecordFilters(), limit, offset }
-        const records = await RecordsApi.searchUserRecords(token, payload)
+        const records = await RecordsApi.searchUserRecords( payload)
 
         recordsTableBody.innerHTML = ''
         records.forEach((record) => {
@@ -55,11 +54,10 @@ class Records {
      * @param {number} recordsCount
      * @param {number} recordsPerPage
      * @param {number} currentPage
-     * @param {string} token
      * @returns void
      * @description Render pagination.
      */
-    static renderPagination(recordsCount, recordsPerPage, currentPage, token) {
+    static renderPagination(recordsCount, recordsPerPage, currentPage) {
         const paginationControls = document.getElementById('paginationControls')
         const totalPages = Math.ceil(recordsCount / recordsPerPage)
         paginationControls.innerHTML = ''
@@ -72,8 +70,8 @@ class Records {
                 li.addEventListener('click', async (e) => {
                     e.preventDefault()
                     currentPage = page
-                    await Records.renderRecordTable(token, currentPage)
-                    Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
+                    await Records.renderRecordTable( currentPage)
+                    Records.renderPagination(recordsCount, recordsPerPage, currentPage)
                 })
             }
             paginationControls.appendChild(li)
@@ -106,13 +104,12 @@ class Records {
     }
 
     /**
-     * @param {string} token
      * @returns void
      * @description Set generate report listener.
      */
-    static setGenerateReportListener(token) {
+    static setGenerateReportListener() {
         document.getElementById('recordReportButton').addEventListener('click', async () => {
-            const blob = await RecordsApi.getUserRecordsReport(token, Records.getRecordFilters())
+            const blob = await RecordsApi.getUserRecordsReport( Records.getRecordFilters())
 
             const link = document.createElement('a')
             link.href = URL.createObjectURL(blob)
@@ -126,35 +123,34 @@ class Records {
      * @description Init page.
      */
     static async init() {
-        const token = localStorage.getItem('token')
 
         let currentPage = 1
-        const recordsCount = await RecordsApi.countUserRecords(token, Records.getRecordFilters())
+        const recordsCount = await RecordsApi.countUserRecords( Records.getRecordFilters())
         const recordsPerPage = document.getElementById('recordsPerPageSelect').value
-        await Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
-        await Records.renderRecordTable(token, currentPage)
+        await Records.renderPagination(recordsCount, recordsPerPage, currentPage)
+        await Records.renderRecordTable( currentPage)
 
         if(!Records.listenersBound){
             const recordsPerPageSelect = document.getElementById('recordsPerPageSelect')
             recordsPerPageSelect.addEventListener('change', async () => {
                 const recordsPerPage = parseInt(this.value)
                 currentPage = 1
-                const recordsCount = await RecordsApi.countUserRecords(token, Records.getRecordFilters())
-                Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
-                await Records.renderRecordTable(token, currentPage)
+                const recordsCount = await RecordsApi.countUserRecords( Records.getRecordFilters())
+                Records.renderPagination(recordsCount, recordsPerPage, currentPage)
+                await Records.renderRecordTable( currentPage)
             })
 
             document.getElementById('recordsApplyFilters').addEventListener('click', async (event) => {
                 const recordsPerPage = parseInt(document.getElementById('recordsPerPageSelect').value)
                 currentPage = 1
-                const recordsCount = await RecordsApi.countUserRecords(token, Records.getRecordFilters())
-                Records.renderPagination(recordsCount, recordsPerPage, currentPage, token)
-                await Records.renderRecordTable(token, currentPage)
+                const recordsCount = await RecordsApi.countUserRecords( Records.getRecordFilters())
+                Records.renderPagination(recordsCount, recordsPerPage, currentPage)
+                await Records.renderRecordTable( currentPage)
 
                 event.target.blur()
             })
 
-            Records.setGenerateReportListener(token)
+            Records.setGenerateReportListener()
             Records.listenersBound = true
         }
 

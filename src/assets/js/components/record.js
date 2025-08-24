@@ -3,23 +3,22 @@ const { RecordCategoriesApi, RecordsApi, AccountsApi } = require('../api')
 
 class Record {
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {Promise<void>}
      * @description Set record details.
      */
-    static async setRecordDetails(token, id) {
-        const record = await RecordsApi.getUserRecord(token, id)
-        const recordCategories = await RecordCategoriesApi.getRecordCategories(token)
+    static async setRecordDetails(id) {
+        const record = await RecordsApi.getUserRecord(id)
+        const recordCategories = await RecordCategoriesApi.getRecordCategories()
 
         const recordPaymentTime = new Date(record.paymentTime)
         const formattedPaymentTime = recordPaymentTime.toISOString().split('.')[0]
         const receivingAccount = record.receivingAccountId === null
             ? undefined
-            : await AccountsApi.getUserAccount(token, record.receivingAccountId)
+            : await AccountsApi.getUserAccount(record.receivingAccountId)
         const withdrawalAccount = record.withdrawalAccountId === null
             ? undefined
-            : await AccountsApi.getUserAccount(token, record.withdrawalAccountId)
+            : await AccountsApi.getUserAccount(record.withdrawalAccountId)
 
         const recordHeader = document.getElementById('recordHeader')
         const amount = document.getElementById('updateRecordAmount')
@@ -55,11 +54,10 @@ class Record {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @description Set submit record listener.
      */
-    static setSubmitRecordListener(token, id) {
+    static setSubmitRecordListener(id) {
         document.getElementById('updateRecordForm').addEventListener('submit', async (event) => {
             event.preventDefault()
 
@@ -77,21 +75,20 @@ class Record {
                 payload.category = recordCategory.value
             }
 
-            await RecordsApi.updateUserRecord(token, id, payload)
+            await RecordsApi.updateUserRecord(id, payload)
 
-            await Record.setRecordDetails(token, id)
+            await Record.setRecordDetails(id)
             submitButton.blur()
         })
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @description Set delete record listener.
      */
-    static setDeleteRecordListener(token, id) {
+    static setDeleteRecordListener(id) {
         document.getElementById('deleteRecordButton').addEventListener('click', async () => {
-            await RecordsApi.deleteUserRecord(token, id)
+            await RecordsApi.deleteUserRecord(id)
 
             window.location.href = '/records-history'
         })
@@ -166,12 +163,11 @@ class Record {
      * @description Init page.
      */
     static async init(recordId) {
-        const token = localStorage.getItem('token')
-        await Record.setRecordDetails(token, recordId)
+        await Record.setRecordDetails(recordId)
 
         if(!Record.listenersBound){
-            Record.setSubmitRecordListener(token, recordId)
-            Record.setDeleteRecordListener(token, recordId)
+            Record.setSubmitRecordListener( recordId)
+            Record.setDeleteRecordListener( recordId)
             Record.listenersBound = true
         }
 

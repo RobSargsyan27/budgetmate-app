@@ -3,14 +3,13 @@ const { BudgetsApi, RecordCategoriesApi } = require('../api')
 
 class Budget {
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {Promise<void>}
      * @description Set budget details.
      */
-    static async setBudgetDetails(token, id) {
-        const budget = await BudgetsApi.getUserBudget(token, id)
-        const recordCategories = await RecordCategoriesApi.getRecordCategories(token)
+    static async setBudgetDetails(id) {
+        const budget = await BudgetsApi.getUserBudget(id)
+        const recordCategories = await RecordCategoriesApi.getRecordCategories()
 
         const budgetName = document.getElementById('budgetName')
         const budgetSelectedRecordCategories = document.getElementById('budgetSelectedRecordCategories')
@@ -28,12 +27,11 @@ class Budget {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {void}
      * @description Set submit budget listener.
      */
-    static setSubmitBudgetListener(token, id) {
+    static setSubmitBudgetListener( id) {
         document.getElementById('updateBudgetForm').addEventListener('submit', async (event) => {
             event.preventDefault()
 
@@ -44,21 +42,20 @@ class Budget {
                 .from(document.querySelectorAll('#updateBudgetRecordCategoriesDropdown .form-check-input:checked'))
                 .map(input => input.value)
 
-            await BudgetsApi.updateUserBudget(token, id, { name, amount, recordCategories })
-            await Budget.setBudgetDetails(token, id)
+            await BudgetsApi.updateUserBudget(id, { name, amount, recordCategories })
+            await Budget.setBudgetDetails( id)
             submitButton.blur()
         })
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {void}
      * @description Set delete budget listener.
      */
-    static setDeleteBudgetListener(token, id) {
+    static setDeleteBudgetListener(id) {
         document.getElementById('deleteBudgetButton').addEventListener('click', async () => {
-            await BudgetsApi.deleteUserBudget(token, id)
+            await BudgetsApi.deleteUserBudget(id)
 
             window.location.href = '/budgets'
         })
@@ -90,13 +87,12 @@ class Budget {
      * @description Init page.
      */
     static async init(budgetId) {
-        const token = localStorage.getItem('token')
 
-        await Budget.setBudgetDetails(token, budgetId)
+        await Budget.setBudgetDetails(budgetId)
 
         if(!Budget.listenersBound){
-            Budget.setSubmitBudgetListener(token, budgetId)
-            Budget.setDeleteBudgetListener(token, budgetId)
+            Budget.setSubmitBudgetListener( budgetId)
+            Budget.setDeleteBudgetListener( budgetId)
             Budget.listenersBound = true
         }
 

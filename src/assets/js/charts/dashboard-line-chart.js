@@ -2,9 +2,9 @@ const Chart = require('chart.js/auto')
 const { AnalyticsApi } = require('../api')
 
 class DashboardLineChart {
-    static async renderMonthlyExpensesLineChart(token) {
+    static async renderMonthlyExpensesLineChart() {
         const monthlyExpensesLineChart = document.getElementById('monthlyExpensesLineChart').getContext('2d')
-        const { labels, data } = await AnalyticsApi.getUserDashboardExpensesLineChart(token)
+        const { labels, data } = await AnalyticsApi.getUserDashboardExpensesLineChart()
 
         new Chart(monthlyExpensesLineChart, {
             type: 'line',
@@ -33,9 +33,7 @@ class DashboardLineChart {
     }
 
     static async init() {
-        const token = localStorage.getItem('token')
-
-        await DashboardLineChart.renderMonthlyExpensesLineChart(token)
+        await DashboardLineChart.renderMonthlyExpensesLineChart()
     }
 }
 

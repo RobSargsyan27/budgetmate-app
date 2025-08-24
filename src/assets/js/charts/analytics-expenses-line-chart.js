@@ -3,9 +3,8 @@ const { Chart } = require('chart.js')
 const { AnalyticsApi } = require('../api')
 
 class AnalyticsExpensesLineChart {
-    static async renderExpenseLineChart(chart, token, startDate, endDate) {
+    static async renderExpenseLineChart(chart, startDate, endDate) {
         const { labels, data } = await AnalyticsApi.getUserRecordsOverviewLineChart(
-            token,
             startDate,
             endDate,
             'EXPENSE'
@@ -62,14 +61,11 @@ class AnalyticsExpensesLineChart {
     }
 
     static async init() {
-        const token = localStorage.getItem('token')
-
         let startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1, 0, 0, 0, 0)
         let endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0, 0)
 
         const expensesLineChart = await AnalyticsExpensesLineChart.renderExpenseLineChart(
             undefined,
-            token,
             startDate,
             endDate
         )
@@ -85,7 +81,7 @@ class AnalyticsExpensesLineChart {
                 endDate.toLocaleString('en-US', dateOptions)
             }`
 
-            await AnalyticsExpensesLineChart.renderExpenseLineChart(expensesLineChart, token, startDate, endDate)
+            await AnalyticsExpensesLineChart.renderExpenseLineChart(expensesLineChart, startDate, endDate)
         })
 
         document.getElementById('nextMonthExpenseLineChart').addEventListener('click', async () => {
@@ -99,7 +95,7 @@ class AnalyticsExpensesLineChart {
                 endDate.toLocaleString('en-US', dateOptions)
             }`
 
-            await AnalyticsExpensesLineChart.renderExpenseLineChart(expensesLineChart, token, startDate, endDate)
+            await AnalyticsExpensesLineChart.renderExpenseLineChart(expensesLineChart, startDate, endDate)
         })
     }
 }

@@ -94,10 +94,9 @@ class Profile {
     }
 
     /**
-     * @param {string} token
      * @description Set update user listener.
      */
-    static setUpdateUserListener(token) {
+    static setUpdateUserListener() {
         document.getElementById('updateProfileForm').addEventListener('submit', async function(event) {
             event.preventDefault()
             const submitButton = document.getElementById('submitButton')
@@ -122,7 +121,7 @@ class Profile {
             }
 
             if (Profile.validateUserUpdateForm(payload)) {
-                const result = await UsersApi.updateUser(token, payload)
+                const result = await UsersApi.updateUser(payload)
 
                 Profile.setFormDetails(result)
                 submitButton.blur()
@@ -133,14 +132,11 @@ class Profile {
     }
 
     /**
-     * @param {string} token
      * @description Set delete user listener.
      */
-    static setDeleteUserListener(token) {
+    static setDeleteUserListener() {
         document.getElementById('deleteAccountButton').addEventListener('click', async () => {
-            await UsersApi.deleteUser(token)
-
-            localStorage.removeItem('token')
+            await UsersApi.deleteUser()
             window.location.href = '/login'
         })
     }
@@ -150,14 +146,13 @@ class Profile {
      * @description Init page.
      */
     static async init() {
-        const token = localStorage.getItem('token')
-        const user = await UsersApi.getUser(token)
+        const user = await UsersApi.getUser()
 
         Profile.setFormDetails(user)
 
         if(!Profile.listenersBound){
-            Profile.setUpdateUserListener(token)
-            Profile.setDeleteUserListener(token)
+            Profile.setUpdateUserListener()
+            Profile.setDeleteUserListener()
             Profile.listenersBound = true
         }
 

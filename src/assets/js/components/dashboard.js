@@ -6,16 +6,15 @@ const { Modal } = require('bootstrap')
 
 class Dashboard {
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Set record categories.
      */
-    static async setRecordCategories(token) {
+    static async setRecordCategories() {
         const incomeRecordCategoryDropdown = document.getElementById('incomeRecordCategoryDropdown')
         const expenseRecordCategoryDropdown = document.getElementById('expenseRecordCategoryDropdown')
         const budgetRecordCategoriesDropdown = document.getElementById('budgetRecordCategoriesDropdown')
 
-        const recordCategories = await RecordCategoriesApi.getRecordCategories(token)
+        const recordCategories = await RecordCategoriesApi.getRecordCategories()
 
         recordCategories.forEach((recordCategories) => {
             incomeRecordCategoryDropdown.innerHTML += `<option 
@@ -41,17 +40,16 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Set user accounts.
      */
-    static async setUserAccounts(token) {
+    static async setUserAccounts() {
         const incomeReceivingAccountDropdown = document.getElementById('incomeReceivingAccountDropdown')
         const expenseWithdrawalAccountDropdown = document.getElementById('expenseWithdrawalAccountDropdown')
         const transferReceivingAccountDropdown = document.getElementById('transferReceivingAccountDropdown')
         const transferWithdrawalAccountDropdown = document.getElementById('transferWithdrawalAccountDropdown')
 
-        const accounts = await AccountsApi.getUserAccounts(token)
+        const accounts = await AccountsApi.getUserAccounts()
 
         accounts.forEach((account) => {
             incomeReceivingAccountDropdown.innerHTML +=
@@ -69,14 +67,13 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Set dashboard user accounts.
      */
-    static async setDashboardUserAccounts(token) {
+    static async setDashboardUserAccounts() {
         const dashboardAccounts = document.getElementById('dashboardAccounts')
 
-        const accounts = await AccountsApi.getUserAccounts(token)
+        const accounts = await AccountsApi.getUserAccounts()
 
         dashboardAccounts.innerHTML = ''
         accounts.forEach((account) => {
@@ -105,17 +102,16 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Set dashboard user analytics.
      */
-    static async setDashboardUserAnalytics(token) {
+    static async setDashboardUserAnalytics() {
         const monthlyEarningsStat = document.getElementById('monthlyEarningsStat')
         const annualEarningsStat = document.getElementById('annualEarningsStat')
         const monthlyExpensesStat = document.getElementById('monthlyExpensesStat')
         const cashFlowStat = document.getElementById('cashFlowStat')
 
-        const { monthlyEarnings, monthlyExpenses, annualEarnings } = await AnalyticsApi.getUserDashboardAnalytics(token)
+        const { monthlyEarnings, monthlyExpenses, annualEarnings } = await AnalyticsApi.getUserDashboardAnalytics()
 
         monthlyEarningsStat.textContent = monthlyEarnings
         monthlyExpensesStat.textContent = monthlyExpenses
@@ -135,38 +131,36 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @returns void
      * @description Submit record listener.
      */
-    static submitRecordListener(token) {
+    static submitRecordListener() {
         document.getElementById('addRecordButton').addEventListener('click', async () => {
             const activeTab = document.querySelector('#recordTabs .nav-link.active').textContent
 
             switch (activeTab) {
                 case 'Expense':
-                    await Dashboard.submitExpenseRecord(token)
+                    await Dashboard.submitExpenseRecord()
                     break
                 case 'Income':
                     console.log('income')
-                    await Dashboard.submitIncomeRecord(token)
+                    await Dashboard.submitIncomeRecord()
                     break
                 case 'Transfer':
-                    await Dashboard.submitTransferRecord(token)
+                    await Dashboard.submitTransferRecord()
                     break
             }
 
-            await Promise.all([ Dashboard.setDashboardUserAccounts(token), Dashboard.setDashboardUserAnalytics(token) ])
+            await Promise.all([ Dashboard.setDashboardUserAccounts(), Dashboard.setDashboardUserAnalytics() ])
             Modal.getOrCreateInstance(document.getElementById('addRecordModal')).hide()
         })
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Submit expense record.
      */
-    static async submitExpenseRecord(token) {
+    static async submitExpenseRecord() {
         const amountInput = document.getElementById('expenseAmount')
         const paymentTimeInput = document.getElementById('expensePaymentTime')
         const categoryDropdown = document.getElementById('expenseRecordCategoryDropdown')
@@ -180,7 +174,7 @@ class Dashboard {
         const note = noteInput.value
         const type = 'EXPENSE'
 
-        await RecordsApi.addUserRecord(token, { amount, paymentTime, category, withdrawalAccountId, note, type })
+        await RecordsApi.addUserRecord({ amount, paymentTime, category, withdrawalAccountId, note, type })
 
         amountInput.value = ''
         paymentTimeInput.value = ''
@@ -190,11 +184,10 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Submit income record.
      */
-    static async submitIncomeRecord(token) {
+    static async submitIncomeRecord() {
         const amountInput = document.getElementById('incomeAmount')
         const paymentTimeInput = document.getElementById('incomePaymentTime')
         const categoryDropdown = document.getElementById('incomeRecordCategoryDropdown')
@@ -208,7 +201,7 @@ class Dashboard {
         const note = noteInput.value
         const type = 'INCOME'
 
-        await RecordsApi.addUserRecord(token, { amount, paymentTime, category, receivingAccountId, note, type })
+        await RecordsApi.addUserRecord({ amount, paymentTime, category, receivingAccountId, note, type })
 
         amountInput.value = ''
         paymentTimeInput.value = ''
@@ -218,11 +211,10 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Submit transfer record.
      */
-    static async submitTransferRecord(token) {
+    static async submitTransferRecord() {
         const amountInput = document.getElementById('transferAmount')
         const paymentTimeInput = document.getElementById('transferPaymentTime')
         const receivingAccountDropdown = document.getElementById('transferReceivingAccountDropdown')
@@ -236,10 +228,7 @@ class Dashboard {
         const note = noteInput.value
         const type = 'TRANSFER'
 
-        await RecordsApi.addUserRecord(
-            token,
-            { amount, paymentTime, withdrawalAccountId, receivingAccountId, note, type }
-        )
+        await RecordsApi.addUserRecord({ amount, paymentTime, withdrawalAccountId, receivingAccountId, note, type })
 
         amountInput.value = ''
         paymentTimeInput.value = ''
@@ -249,10 +238,9 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @description Submit budget listener.
      */
-    static submitBudgetListener(token) {
+    static submitBudgetListener() {
         document.getElementById('addBudgetButton').addEventListener('click', async function() {
             const nameInput = document.getElementById('budgetName')
             const amountInput = document.getElementById('budgetAmount')
@@ -266,7 +254,7 @@ class Dashboard {
                 .from(document.querySelectorAll('#budgetRecordCategoriesDropdown .form-check-input:checked'))
                 .map(input => input.value)
 
-            await BudgetsApi.addUserBudget(token, { amount, name, budgetCategories })
+            await BudgetsApi.addUserBudget( { amount, name, budgetCategories })
 
             nameInput.value = ''
             amountInput.value = ''
@@ -276,28 +264,26 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @description Submit account listener.
      */
-    static submitAccountListener(token) {
+    static submitAccountListener() {
         document.getElementById('addAccountButton').addEventListener('click', async () => {
             const activeTab = document.querySelector('#accountTabs .nav-link.active').textContent
 
             activeTab === 'New Account'
-                ? await Dashboard.submitNewAccount(token)
-                : await Dashboard.submitExistingAccountRequest(token)
+                ? await Dashboard.submitNewAccount()
+                : await Dashboard.submitExistingAccountRequest()
 
-            await Promise.all([ Dashboard.setDashboardUserAccounts(token), Dashboard.setDashboardUserAnalytics(token) ])
+            await Promise.all([ Dashboard.setDashboardUserAccounts(), Dashboard.setDashboardUserAnalytics() ])
             Modal.getOrCreateInstance(document.getElementById('addAccountModal')).hide()
         })
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Submit new account.
      */
-    static async submitNewAccount(token) {
+    static async submitNewAccount() {
         const name = document.getElementById('accountName')
         const currency = document.getElementById('accountCurrency')
         const currentBalance = document.getElementById('accountCurrentBalance')
@@ -311,7 +297,7 @@ class Dashboard {
             type: type.value,
             avatarColor: avatarColor.value
         }
-        await AccountsApi.addUserAccount(token, payload)
+        await AccountsApi.addUserAccount( payload)
 
         name.value = ''
         currency.selectedIndex = 0
@@ -321,16 +307,15 @@ class Dashboard {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Submit existing account request.
      */
-    static async submitExistingAccountRequest(token) {
+    static async submitExistingAccountRequest() {
         const accountName = document.getElementById('existingAccountName')
         const ownerUsername = document.getElementById('existingAccountOwnerUsername')
 
         const payload = { accountName: accountName.value, ownerUsername: ownerUsername.value }
-        await AccountRequestsApi.addUserAccountRequest(token, payload)
+        await AccountRequestsApi.addUserAccountRequest( payload)
 
         accountName.value = ''
         ownerUsername.value = ''
@@ -341,21 +326,19 @@ class Dashboard {
      * @description Init page.
      */
     static async init() {
-        const token = localStorage.getItem('token')
-
         await Promise.all([
             DashboardPieChart.init(),
             DashboardLineChart.init(),
-            Dashboard.setDashboardUserAccounts(token),
-            Dashboard.setDashboardUserAnalytics(token)
+            Dashboard.setDashboardUserAccounts(),
+            Dashboard.setDashboardUserAnalytics()
         ])
 
         if(!Dashboard.listenersBound){
-            Dashboard.submitRecordListener(token)
-            Dashboard.submitBudgetListener(token)
-            Dashboard.submitAccountListener(token)
-            await Dashboard.setRecordCategories(token)
-            await Dashboard.setUserAccounts(token)
+            Dashboard.submitRecordListener()
+            Dashboard.submitBudgetListener()
+            Dashboard.submitAccountListener()
+            await Dashboard.setRecordCategories()
+            await Dashboard.setUserAccounts()
             Dashboard.listenersBound = true
         }
 

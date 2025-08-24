@@ -3,8 +3,8 @@ const { Chart } = require('chart.js')
 const { AnalyticsApi } = require('../api')
 
 class AnalyticsEarningsLineChart {
-    static async renderLineChart(chart, token, startDate, endDate) {
-        const { labels, data } = await AnalyticsApi.getUserRecordsOverviewLineChart(token, startDate, endDate, 'INCOME')
+    static async renderLineChart(chart, startDate, endDate) {
+        const { labels, data } = await AnalyticsApi.getUserRecordsOverviewLineChart(startDate, endDate, 'INCOME')
         const earningsChartContext = document.getElementById('earningsLineChart').getContext('2d')
 
         if (chart) {
@@ -57,12 +57,10 @@ class AnalyticsEarningsLineChart {
     }
 
     static async init() {
-        const token = localStorage.getItem('token')
-
         let startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1, 0, 0, 0, 0)
         let endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0, 0)
 
-        const earningsLineChart = await AnalyticsEarningsLineChart.renderLineChart(undefined, token, startDate, endDate)
+        const earningsLineChart = await AnalyticsEarningsLineChart.renderLineChart(undefined, startDate, endDate)
 
         document.getElementById('previousMonthEarningLineChart').addEventListener('click', async () => {
             const earningsLineChartDate = document.getElementById('earningsLineChartDate')
@@ -75,7 +73,7 @@ class AnalyticsEarningsLineChart {
                 endDate.toLocaleString('en-US', dateOptions)
             }`
 
-            await AnalyticsEarningsLineChart.renderLineChart(earningsLineChart, token, startDate, endDate)
+            await AnalyticsEarningsLineChart.renderLineChart(earningsLineChart, startDate, endDate)
         })
 
         document.getElementById('nextMonthEarningLineChart').addEventListener('click', async () => {
@@ -89,7 +87,7 @@ class AnalyticsEarningsLineChart {
                 endDate.toLocaleString('en-US', dateOptions)
             }`
 
-            await AnalyticsEarningsLineChart.renderLineChart(earningsLineChart, token, startDate, endDate)
+            await AnalyticsEarningsLineChart.renderLineChart(earningsLineChart, startDate, endDate)
         })
     }
 }

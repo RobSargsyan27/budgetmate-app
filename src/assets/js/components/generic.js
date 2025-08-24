@@ -1,8 +1,8 @@
 const $ = require('jquery')
 const { Collapse } =  require('bootstrap')
 
-const { AccountRequestsApi, UsersApi } = require('../api')
-const { AuthLib, ActivityLogLib } = require('../lib')
+const { AccountRequestsApi, UsersApi, AuthApi} = require('../api')
+const { ActivityLogLib } = require('../lib')
 
 class Generic {
     /**
@@ -12,25 +12,24 @@ class Generic {
     static setUserLogOutListener() {
         const logOutButton = document.getElementById('logOutButton')
 
-        logOutButton.addEventListener('click', function() {
-            localStorage.removeItem('token')
+        logOutButton.addEventListener('click', async () => {
+            await AuthApi.logoutUser()
             sessionStorage.removeItem('activityLog')
             window.location.href = '/login'
         })
     }
 
     /**
-     * @param {string} token
      * @param {Array<Element>} buttons
      * @param {boolean} type
      * @param {Element} topNavbarNotificationCount
      * @returns void
      * @description Set notification buttons.
      */
-    static setNotificationButtons(token, buttons, type, topNavbarNotificationCount) {
+    static setNotificationButtons( buttons, type, topNavbarNotificationCount) {
         buttons.forEach((button) => {
             button.addEventListener('click', async (event) => {
-                await AccountRequestsApi.updateUserAccountRequest(token, event.target.id, type)
+                await AccountRequestsApi.updateUserAccountRequest( event.target.id, type)
 
                 const link = document.getElementById(`${event.target.id}-link`)
                 if (link) {
@@ -48,15 +47,14 @@ class Generic {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Set notifications.
      */
-    static async setNotifications(token) {
+    static async setNotifications() {
         const topNavbarNotificationCount = document.getElementById('topNavbarNotificationCount')
         const dropdownMenu = document.getElementById('topNavbarNotifications')
         dropdownMenu.innerHTML = '<h6 class="dropdown-header">Notifications Center</h6>'
-        const notifications = await UsersApi.getUserNotifications(token)
+        const notifications = await UsersApi.getUserNotifications()
 
         if (notifications.length) {
             topNavbarNotificationCount.textContent = notifications.length
@@ -81,9 +79,9 @@ class Generic {
         }
 
         const rejectButtons = Array.from(document.getElementsByClassName('notification-reject-button'))
-        Generic.setNotificationButtons(token, rejectButtons, false, topNavbarNotificationCount)
+        Generic.setNotificationButtons(rejectButtons, false, topNavbarNotificationCount)
         const approvedButtons = Array.from(document.getElementsByClassName('notification-approve-button'))
-        Generic.setNotificationButtons(token, approvedButtons, true, topNavbarNotificationCount)
+        Generic.setNotificationButtons(approvedButtons, true, topNavbarNotificationCount)
     }
 
     /**
@@ -199,25 +197,21 @@ class Generic {
      * @description Init.
      */
     static async init() {
-        Generic.initSidebarToggle()
-        Generic.handleWindowResize()
-        Generic.preventSidebarScrolling()
-        Generic.toggleScrollToTopButton()
-        Generic.smoothScroll()
+        try{
+            Generic.initSidebarToggle()
+            Generic.handleWindowResize()
+            Generic.preventSidebarScrolling()
+            Generic.toggleScrollToTopButton()
+            Generic.smoothScroll()
 
-        const token = localStorage.getItem('token')
+            Generic.setUserLogOutListener()
+            await Generic.setNotifications()
 
-        if (!token) {
+            const user = await UsersApi.getUser()
+            Generic.setTopNavDetails(user.username, user.firstname, user.lastname, user.avatarColor)
+        }catch (error){
             window.location.href = '/login'
         }
-
-        await AuthLib.validateToken(token)
-
-        Generic.setUserLogOutListener()
-        await Generic.setNotifications(token)
-
-        const user = await UsersApi.getUser(token)
-        Generic.setTopNavDetails(user.username, user.firstname, user.lastname, user.avatarColor)
     }
 }
 

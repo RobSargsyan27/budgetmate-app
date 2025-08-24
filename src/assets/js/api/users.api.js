@@ -1,15 +1,17 @@
+const { CookieLib } = require('../lib')
+
 class UsersApi {
     /**
-     * @param {string} token
      * @returns {Promise<Object>}
      * @description Get user.
      */
-    static async getUser(token) {
+    static async getUser() {
         const user = await fetch(UsersApi.BASE_URL, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -17,18 +19,18 @@ class UsersApi {
     }
 
     /**
-     * @param {string} token
      * @param {Object} payload
      * @returns {Promise<Object>}
      * @description Update user.
      */
-    static async updateUser(token, payload) {
+    static async updateUser( payload) {
         const user = await fetch(UsersApi.BASE_URL, {
             method: 'PATCH',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -37,26 +39,27 @@ class UsersApi {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Delete user.
      */
-    static async deleteUser(token) {
+    static async deleteUser() {
         await fetch(UsersApi.BASE_URL, {
             method: 'DELETE',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
     }
 
-    static async getUserNotifications(token) {
+    static async getUserNotifications() {
         const notifications = await fetch(`${UsersApi.BASE_URL}/notifications`, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 

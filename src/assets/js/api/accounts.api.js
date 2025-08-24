@@ -1,15 +1,17 @@
+const { CookieLib } = require('../lib')
+
 class AccountsApi {
     /**
-     * @param {string} token
      * @returns {Promise<Array<Object>>}
      * @description Get user accounts.
      */
-    static async getUserAccounts(token) {
+    static async getUserAccounts() {
         const accounts = await fetch(AccountsApi.BASE_URL, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -17,18 +19,18 @@ class AccountsApi {
     }
 
     /**
-     * @param {string} token
      * @param {Object} payload
      * @returns {Promise<Object>}
      * @description Add user account.
      */
-    static async addUserAccount(token, payload) {
+    static async addUserAccount( payload) {
         const account = await fetch(AccountsApi.BASE_URL, {
             method: 'POST',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -37,17 +39,17 @@ class AccountsApi {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {Promise<Object>}
      * @description Get user account.
      */
-    static async getUserAccount(token, id) {
+    static async getUserAccount( id) {
         const account = await fetch(`${AccountsApi.BASE_URL}/${id}`, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -55,19 +57,19 @@ class AccountsApi {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @param {Object} payload
      * @returns {Promise<Object>}
      * @description Update user account.
      */
-    static async updateUserAccount(token, id, payload) {
+    static async updateUserAccount( id, payload) {
         const account = await fetch(`${AccountsApi.BASE_URL}/${id}`, {
             method: 'PATCH',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             },
             body: JSON.stringify(payload)
         })
@@ -76,17 +78,17 @@ class AccountsApi {
     }
 
     /**
-     * @param {string} token
      * @param {string} id
      * @returns {Promise<void>}
      * @description Delete user account.
      */
-    static async deleteUserAccount(token, id) {
+    static async deleteUserAccount( id) {
         await fetch(`${AccountsApi.BASE_URL}/${id}`, {
             method: 'DELETE',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
     }

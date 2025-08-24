@@ -1,3 +1,5 @@
+const {CookieLib} = require("../lib");
+
 class AuthApi {
     /**
      * @param {Object} payload
@@ -17,11 +19,11 @@ class AuthApi {
 
     /**
      * @param {Object} payload
-     * @returns {Promise<Object>}
+     * @returns {Promise<void>}
      * @description Login user.
      */
     static async loginUser(payload) {
-        const token = await fetch(`${AuthApi.BASE_URL}/login`, {
+        const response = await fetch(`${AuthApi.BASE_URL}/login`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -30,25 +32,27 @@ class AuthApi {
             body: JSON.stringify(payload)
         })
 
-        return token.json()
+        const xsrfToken = response.headers.get('X-CSRF-TOKEN');
+        console.log(response.headers)
+        if (xsrfToken) {
+            document.cookie = `X-XSRF-TOKEN=${xsrfToken}; path=/`;
+        }
     }
 
     /**
-     * @param {Object} payload
-     * @returns {Promise<Object>}
-     * @description Validate user token.
+     * @returns {Promise<void>}
+     * @description Logout user.
      */
-    static async validateUserToken(payload) {
-        const response = await fetch(`${AuthApi.BASE_URL}/validate-token`, {
+    static async logoutUser(){
+        await fetch('${AuthApi.BASE_URL}/logout', {
             method: 'POST',
+            credentials: "include",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
+                'Content-Type': 'application/json',
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
+            }
         })
-
-        return response.json()
     }
 }
 

@@ -1,15 +1,17 @@
+const { CookieLib } = require('../lib')
+
 class AnalyticsApi {
     /**
-     * @param {string} token
      * @returns {Promise<Object>}
      * @description Get user dashboard analytics.
      */
-    static async getUserDashboardAnalytics(token) {
+    static async getUserDashboardAnalytics() {
         const analytics = await fetch(`${AnalyticsApi.BASE_URL}/dashboard`, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -17,16 +19,16 @@ class AnalyticsApi {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<Object>}
      * @description Get user dashboard category pie chart.
      */
-    static async getUserDashboardCategoryPieChart(token) {
+    static async getUserDashboardCategoryPieChart() {
         const analytics = await fetch(`${AnalyticsApi.BASE_URL}/dashboard/categories-pie`, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -34,16 +36,16 @@ class AnalyticsApi {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<Object>}
      * @description Get user dashboard expenses line chart.
      */
-    static async getUserDashboardExpensesLineChart(token) {
+    static async getUserDashboardExpensesLineChart() {
         const analytics = await fetch(`${AnalyticsApi.BASE_URL}/dashboard/expenses-line-chart`, {
             method: 'GET',
+            credentials: "include",
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`
+                "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
             }
         })
 
@@ -51,13 +53,12 @@ class AnalyticsApi {
     }
 
     /**
-     * @param {string} token
      * @param {Date} startDate
      * @param {Date} endDate
      * @returns {Promise<Object>}
      * @description Get user records overview.
      */
-    static async getUserRecordsOverview(token, startDate, endDate) {
+    static async getUserRecordsOverview(startDate, endDate) {
         const _startDate = startDate.toISOString()
         const _endDate = endDate.toISOString()
 
@@ -65,9 +66,10 @@ class AnalyticsApi {
             `${AnalyticsApi.BASE_URL}/overview?startDate=${_startDate}&endDate=${_endDate}`,
             {
                 method: 'GET',
+                credentials: "include",
                 headers: {
                     Accept: 'application/json',
-                    Authorization: `Bearer ${token}`
+                    "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
                 }
             }
         )
@@ -76,14 +78,13 @@ class AnalyticsApi {
     }
 
     /**
-     * @param {string} token
      * @param {Date} startDate
      * @param {Date} endDate
      * @param {string} recordType
      * @returns {Promise<Object>}
      * @description Get user records overview line chart.
      */
-    static async getUserRecordsOverviewLineChart(token, startDate, endDate, recordType) {
+    static async getUserRecordsOverviewLineChart( startDate, endDate, recordType) {
         const _startDate = startDate.toISOString()
         const _endDate = endDate.toISOString()
 
@@ -91,9 +92,10 @@ class AnalyticsApi {
             `${AnalyticsApi.BASE_URL}/overview-line?startDate=${_startDate}&endDate=${_endDate}&recordType=${recordType}`,
             {
                 method: 'GET',
+                credentials: "include",
                 headers: {
                     Accept: 'application/json',
-                    Authorization: `Bearer ${token}`
+                    "X-XSRF-TOKEN": CookieLib.getCookie('X-XSRF-TOKEN')
                 }
             }
         )

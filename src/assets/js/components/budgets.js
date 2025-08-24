@@ -48,14 +48,13 @@ class Budgets {
     }
 
     /**
-     * @param {string} token
      * @returns {Promise<void>}
      * @description Set budgets.
      */
-    static async setBudgets(token) {
+    static async setBudgets() {
         const budgetsContainer = document.getElementById('budgetsContainer')
-        const budgets = await BudgetsApi.getUserBudgets(token)
-        const budgetsCurrentBalance = await BudgetsApi.getUserBudgetsCurrentBalance(token)
+        const budgets = await BudgetsApi.getUserBudgets()
+        const budgetsCurrentBalance = await BudgetsApi.getUserBudgetsCurrentBalance()
 
         budgetsContainer.innerHTML = ''
         budgets.length
@@ -64,13 +63,12 @@ class Budgets {
     }
 
     /**
-     * @param {string} token
      * @returns {void}
      * @description Set budget report listener.
      */
-    static setBudgetReportListener(token) {
+    static setBudgetReportListener() {
         document.getElementById('budgetReportButton').addEventListener('click', async () => {
-            const blob = await BudgetsApi.getUserBudgetsReport(token)
+            const blob = await BudgetsApi.getUserBudgetsReport()
 
             const link = document.createElement('a')
             link.href = URL.createObjectURL(blob)
@@ -84,12 +82,10 @@ class Budgets {
      * @description Init page.
      */
     static async init() {
-        const token = localStorage.getItem('token')
-
-        await Budgets.setBudgets(token)
+        await Budgets.setBudgets()
 
         if(!Budgets.listenersBound){
-            Budgets.setBudgetReportListener(token)
+            Budgets.setBudgetReportListener()
             Budgets.listenersBound = true
         }
 
