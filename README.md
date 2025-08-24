@@ -531,7 +531,33 @@ Authorization: Bearer {{token}}
 
 ---
 
-## Week 12
+# Week 4 & 5
+
+List of users and their credentials:
+
+```
+#1
+username: user@budgetmate.com
+password: user123
+role: USER
+
+#2
+username: user1@budgetmate.com
+password: user123
+role: ADMIN
+```
+
+The landing webpages can be accessed by anyone without authentication. Here is the [link](http://budgetmate.com) to the landing website. (Don’t forget to set up `/etc/hosts`  config so that all URL works correctly.
+
+The web-app itself required authentication. Here is the [link](http://app.budgetmate.com) to the login page to open user’s dashboard. (Don’t forget to set up `/etc/hosts`  config so that all URL works correctly.
+
+Due to the business logic of the application and the nature of it, it won’t make sense to give admins access to the users’ data such as records, budgets, etc. Neither is will make sense to give analytics about users’ data.  That’s why it was decided to support simple dashboard and profile pages where admins can see the current number of the users and can change their profile details. 
+
+The admin can neither access nor update users’ related data but their can see high-level analytics about the application data in their respective dashboard. 
+
+---
+
+# Week 12
 
 ![Screenshot 1](./doc/img/week12-1.png)
 
@@ -547,7 +573,7 @@ There are two additional dependencies that are added one of which is the `jquery
 
 ---
 
-## Project Requirements
+# Project Requirements
 
 | Week | Requirement | Status |
 | --- | --- | --- |
@@ -570,6 +596,19 @@ There are two additional dependencies that are added one of which is the `jquery
 | 3 | You should call your endpoints from JavaScript in a meaningful way. | ✅ |
 | 3 | Edit your .http file by adding request messages for each endpoint and each possible response status code (including 400, which is usually handled by Spring). | ⚠️ |
 | 3 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 3 required documentation. | ✅ |
+| 4 | Implement Spring Security in your application. | ✅ |
+| 4 | Certain application parts must be public (such as the landing page). | ✅ |
+| 4 | At least one page should not be accessible to users that are not authenticated. Ensure that you pick (a) meaningful page(s) for which a user needs to be authenticated. | ✅ |
+| 4 | At least one page should display different information depending on whether or not the user is logged in. This information should be application-specific (specific to your dataset), not just the username mentioned earlier. | ⚠️ |
+| 4 | The user should be implemented as a persisted entity. | ✅ |
+| 4 | The REST API and Ajax features should work as before. | ✅ |
+| 4 | Ensure that passwords are hashed in the database. | ✅ |
+| 4 | Create a consistent and meaningful implementation that makes sense to users and that can easily be verified for correctness. | ✅ |
+| 4 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 4 required documentation. | ✅ |
+| 5 | Implement at least two different roles. | ✅ |
+| 5 | The user should be implemented as a persisted entity with at least one association with another domain entity | ✅ |
+| 5 | Protect your web application against CSRF. | ✅ |
+| 5 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 5 required documentation. | ✅ |
 | 11 | Set up a separate project using npm, webpack, ESLint, and dprint. | ✅ |
 | 11 | All styling should be done using Sass. Use at least two features from the SCSS syntax. Write idiomatic SCSS code. | ✅ |
 | 11 | Add Bootstrap to your application and use Bootstrap components and layout features where possible. | ✅ |
@@ -580,7 +619,7 @@ There are two additional dependencies that are added one of which is the `jquery
 | 11 | Write your fetch call using async/await syntax, so not using 'then.’ | ✅ |
 | 11 | Implement a new Web API endpoint (REST) in your Spring Boot backend to create a new record, that you cannot yet add through your REST API. | ✅ |
 | 11 | Implement a form in your Client project to add a record. Using a fetch call, you should call the backend and process the response. | ✅ |
-| 11 | In your backend, disable CSRF only for this endpoint. Add a comment to clarify that this is for the separate Client project. | ❌ |
+| 11 | In your backend, disable CSRF only for this endpoint. Add a comment to clarify that this is for the separate Client project. | ✅ |
 | 11 | Enable CORS and only allow the origin that corresponds to your Client application.  | ⚠️ |
 | 12 | Set up your embedded frontend project using npm and webpack. Follow all guidelines listed in the 13-step process. | ❌ |
 | 12 | Migrate some of your stylings from CSS to SCSS syntax. Use at least two features from the SCSS syntax. Don't just rename your CSS files, but write idiomatic SCSS code. | ✅ |
@@ -590,3 +629,4 @@ There are two additional dependencies that are added one of which is the `jquery
 | 12 | Add Bootstrap Icons using npm. Add at least one icon to your website. | ✅ |
 | 12 | Add custom client-side form validation to at least one of your forms. Use the 'joi' or 'validator' npm package to implement this. | ✅ |
 | 12 | Add at least two JavaScript dependencies of your choice to your project in addition to the ones listed above. | ✅ |
+| 12 | Update [`README.md`](https://gitlab.com/kdg-ti/programming-5/projects-24-25/acs202/robert.sargsyan/spring-backend/-/blob/main/README.md?ref_type=heads) file - add Week 12 required documentation. | ✅ |
